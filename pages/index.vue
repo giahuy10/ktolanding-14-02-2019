@@ -91,7 +91,7 @@
                           <p>Hãy xem kỹ video hướng dẫn các tính năng mới của Website KTO dưới đây. Video này sẽ chứa những gợi ý cực kỳ quan trọng giúp bạn trả lời các câu hỏi đố vui để nhận quà từ KTO!</p>
                       </div>
                     </div>
-                    <div class="rules-play__youtube" @click="playVideo">
+                    <div class="rules-play__youtube" @click="showModal = true">
                       <figure class="lazy rules-play__background-image" style="display: block; background-image: url(/img/hero_background.jpg);">
                           <a class="rules-play__button-play" data-toggle="modal" data-target="#videoModal" data-video-id="xRlxzrut0BQ"></a>
                       </figure>
@@ -224,26 +224,29 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <div class="modal fade" ref="myModalRef" id="videoModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        
 
-          <div class="modal-footer text-center">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <iframe width="460" height="230" src="//www.youtube.com/embed/xRlxzrut0BQ?autoplay=1&amp;cc_load_policy=1&amp;color=null&amp;controls=1&amp;disablekb=0&amp;enablejsapi=0&amp;end=null&amp;fs=1&amp;h1=null&amp;iv_load_policy=1&amp;list=null&amp;listType=null&amp;loop=0&amp;modestbranding=null&amp;origin=null&amp;playlist=null&amp;playsinline=null&amp;rel=0&amp;showinfo=1&amp;start=0&amp;wmode=transparent&amp;theme=dark&amp;nocookie=false" frameborder="0" allowfullscreen="true" tabindex="-1">
-                
-          </iframe>
+
+    <transition name="modal" v-if="showModal">
+      <div class="modal-mask" id="videoModal">
+        <div class="modal-wrapper">
+          <div class="modal-container">
+            <div class="modal-body">
+              <iframe width="460" height="230" src="//www.youtube.com/embed/xRlxzrut0BQ?autoplay=1&amp;cc_load_policy=1&amp;color=null&amp;controls=1&amp;disablekb=0&amp;enablejsapi=0&amp;end=null&amp;fs=1&amp;h1=null&amp;iv_load_policy=1&amp;list=null&amp;listType=null&amp;loop=0&amp;modestbranding=null&amp;origin=null&amp;playlist=null&amp;playsinline=null&amp;rel=0&amp;showinfo=1&amp;start=0&amp;wmode=transparent&amp;theme=dark&amp;nocookie=false" frameborder="0" allowfullscreen="true" tabindex="-1">
+               </iframe>
+            </div>
+
+           
           </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 <script>
 export default {
   data () {
     return {
+      showModal: false,
       login: {
         username: '',
         password: ''
@@ -461,6 +464,81 @@ export default {
     top: 0px;
     right: 0px;
 }
+}
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 300px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+#videoModal {
+  .modal-container {
+    padding: 0;
+    background: 0;
+    box-shadow: none;
+    width: 840px;
+    iframe {
+      width: 100%;
+      height: 480px;
+    }
+  }
 }
 </style>
 
