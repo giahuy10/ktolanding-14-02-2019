@@ -101,13 +101,13 @@
                 
                       <div class="rules-play__intro">
                        
-                        <p v-if="loggedUser.id">
+                        <p v-if="loggedUser">
                           Cảm ơn bạn đã đăng nhập với hế thống của chúng tôi
                         </p>
                           <p v-else>Đăng nhập tài khoản KTO tại đây để trả lời các câu hỏi phía dưới nhé! Lưu ý: Nếu bạn chưa có tài khoản, có thể đăng nhập nhanh bằng tài khoản  Facebook hoặc Email cực tiện :)</p>
                       </div>
                     </div>
-                    <div class="rules-play__user" v-if="!loggedUser.id">
+                    <div class="rules-play__user" v-if="!loggedUser">
                       <button type="button" class="btn btn-primary btn-lg login-button" @click="err=[]" data-toggle="modal" data-target="#loginModal">
                           Đăng nhập
                       </button>
@@ -173,9 +173,7 @@
               </div>
             
           </div>
-          <div class="modal-footer text-center">
-            Chưa có tài khoản? <a href="">Đăng ký thành viên</a>
-          </div>
+         
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
@@ -213,7 +211,7 @@
               <div class="form-group">
                
                 <a  href="#" class="btn btn-success btn-block btn-login" @click.prevent="handleRegister">
-                     <div class="lds-facebook" v-if="!loading"><div></div><div></div><div></div>
+                     <div class="lds-facebook" v-if="loading"><div></div><div></div><div></div>
                       </div>
                       <div v-else>Đăng ký</div>
                  
@@ -221,9 +219,7 @@
               </div>
             
           </div>
-          <div class="modal-footer text-center">
-            Đã có tài khoản? <a href="">Đăng nhập</a>
-          </div>
+         
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
@@ -295,6 +291,7 @@ export default {
           localStorage.setItem('checkUser', JSON.stringify(resUser))
           app.logged = true
           app.loading = false
+          this.playGame()
         }).catch((err) => {
           console.log(err)
         })
@@ -321,15 +318,17 @@ export default {
           let nonce = response.data.nonce
           this.$axios.post(`https://dev.visitkorea.org.vn/api/user/register/?username=${this.regiser.username}&user_pass=${this.regiser.password}&email=${this.regiser.email}&nonce=${nonce}&display_name=${this.regiser.displayName}`)
             .then((reg) => {
-              localStorage.setItem('user',{
+              let regUser = {
                 id: reg.data.user_id,
                 cookie: reg.data.cookie,
                 username: app.regiser.username,
                 email: app.regiser.email,
                 displayName: app.regiser.displayName
-              })
+              }
+              localStorage.setItem('checkUser', JSON.stringify(regUser))
               app.logged = true
               app.loading = false
+              this.playGame()
             })
             .catch((err) => {
 
