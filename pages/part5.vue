@@ -1,5 +1,5 @@
 <template>
-  <div class="part5">
+  <div class="finish">
 
     <section class="shareFacebook" id="shareFacebok">
         <div class="container">
@@ -12,7 +12,23 @@
                       <p>
                         bit.ly/xemwebmoingay-nhanqualientay
                       </p>
-                      <button class="btn btn-share">Chia sẻ Facebook</button>
+                     
+                      
+                      <social-sharing @open="openSharing()" @change="changeSharing()" @close="closeSharing()" url="https://vuejs.org/"
+                      title="The Progressive JavaScript Framework"
+                      description="Intuitive, Fast and Composable MVVM for building interactive interfaces."
+                      quote="Vue is a progressive framework for building user interfaces."
+                      hashtags="vuejs,javascript,framework"
+                      twitter-user="vuejs"
+                      inline-template>
+                      <div class="facebook-share">
+                          
+                          <network network="facebook">
+                            <i class="fa fa-facebook"></i> Chia sẻ Facebook
+                          </network>
+                          
+                      </div>
+                    </social-sharing>
                     </div>
                 </div>
               </div>
@@ -42,8 +58,26 @@
   </div>
 </template>
 <script>
+import { ShareFacebook} from 'vue-share-social'
+import SocialSharing from 'vue-social-sharing'
+
 export default {
-  
+  components: {
+    ShareFacebook,
+    SocialSharing
+  },
+  methods: {
+    openSharing () {
+      console.log('open')
+    },
+    closeSharing () {
+      console.log('close')
+      this.$router.push({path: '/finish'})
+    },
+    changeSharing () {
+      console.log('change')
+    }
+  },
 }
 </script>
 
@@ -74,6 +108,20 @@ export default {
     border: 1px solid;
     color: #00abf8;
 }
+}
+.facebook-share span {
+    display: inline-block;
+    border: red;
+    background: red;
+    margin-top: 20px;
+    background: none;
+    border: 1px solid;
+    color: #00abf8;
+    padding: 10px 20px;
+    border-radius: 5px;
+    &:hover {
+      cursor: pointer;
+    }
 }
 </style>
 

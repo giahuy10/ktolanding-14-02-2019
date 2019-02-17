@@ -37,6 +37,9 @@ a:focus {
     display: flex;
     justify-content: center;
 }
+.finish .head {
+    position: initial;
+}
 .logo img {
     max-height: 40px;
     margin: 25px 0;

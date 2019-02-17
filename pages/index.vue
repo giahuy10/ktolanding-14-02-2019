@@ -91,9 +91,9 @@
                           <p>Hãy xem kỹ video hướng dẫn các tính năng mới của Website KTO dưới đây. Video này sẽ chứa những gợi ý cực kỳ quan trọng giúp bạn trả lời các câu hỏi đố vui để nhận quà từ KTO!</p>
                       </div>
                     </div>
-                    <div class="rules-play__youtube" @click="showModal = true">
+                    <div class="rules-play__youtube" @click="showVideoModal = true">
                       <figure class="lazy rules-play__background-image" style="display: block; background-image: url(/img/hero_background.jpg);">
-                          <a class="rules-play__button-play" data-toggle="modal" data-target="#videoModal" data-video-id="xRlxzrut0BQ"></a>
+                          <a class="rules-play__button-play"></a>
                       </figure>
                     </div>
                     <div class="rules-play__step1">
@@ -108,10 +108,10 @@
                       </div>
                     </div>
                     <div class="rules-play__user" v-if="!loggedUser">
-                      <button type="button" class="btn btn-primary btn-lg login-button" @click="err=[]" data-toggle="modal" data-target="#loginModal">
+                      <button type="button" class="btn btn-primary btn-lg login-button" @click="openLogin" >
                           Đăng nhập
                       </button>
-                      <button type="button" class="btn btn-primary btn-lg register-button"  @click="err=[]" data-toggle="modal" data-target="#registerModal">
+                      <button type="button" class="btn btn-primary btn-lg register-button"  @click="openRegister">
                           Đăng ký
                       </button>
                     
@@ -119,6 +119,9 @@
                     <div class="rules-play__step1" v-else>
                       <button type="button" class="btn btn-primary btn-lg register-button"  @click="playGame" >
                           Chơi
+                      </button>
+                      <button type="button" class="btn btn-primary btn-lg login-button"  @click="logout" >
+                          Thoát
                       </button>
                     </div>
                 </div>
@@ -144,98 +147,109 @@
           </div>
         </div>
     </section>
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title"><img src="/img/logo.png"></h4>
-          </div>
-          <div class="modal-body">
-            <div v-if="err.length > 0">
-              <div class="alert alert-warning">
-                <ul>
-                  <li v-for="(text, i) in err" :key="i" v-text="text"></li>
-                </ul>
-              </div>
-            </div>
-            
-              <div class="form-group">
-                <input type="text" v-model="login.username" placeholder="Tài khoản" class="form-control">
-              </div>
-              <div class="form-group">
-                <input type="password" v-model="login.password" placeholder="Mật khẩu" class="form-control">
-              </div>
-              <div class="form-group">
-                <div class="lds-facebook" v-if="loading"><div></div><div></div><div></div>
-                </div>
-                <a v-else href="#" class="btn btn-success btn-block btn-login" @click.prevent="handleLogin">Đăng nhập</a>
-              </div>
-            
-          </div>
-         
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title"><img src="/img/logo.png"></h4>
-          </div>
-          <div class="modal-body">
-            <div v-if="err.length > 0">
-              <div class="alert alert-warning">
-                <ul>
-                  <li v-for="(text, i) in err" :key="i" v-text="text"></li>
-                </ul>
-              </div>
-            </div>
-            
-              <div class="form-group">
-                <input type="text" v-model="regiser.username" placeholder="Tên đăng nhập" class="form-control">
-              </div>
-              <div class="form-group">
-                <input type="text" v-model="regiser.displayName" placeholder="Họ tên" class="form-control">
-              </div>
-              <div class="form-group">
-                <input type="email" v-model="regiser.email" placeholder="Email" class="form-control">
-              </div>
-              <div class="form-group">
-                <input type="password" v-model="regiser.password" placeholder="Mật khẩu" class="form-control">
-              </div>
-              <div class="form-group">
-                <input type="password" v-model="regiser.confirmPassword" placeholder="Xác nhạn mật khẩu" class="form-control">
-              </div>
-              <div class="form-group">
-               
-                <a  href="#" class="btn btn-success btn-block btn-login" @click.prevent="handleRegister">
-                     <div class="lds-facebook" v-if="loading"><div></div><div></div><div></div>
-                      </div>
-                      <div v-else>Đăng ký</div>
-                 
-                </a>
-              </div>
-            
-          </div>
-         
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+   
 
 
 
-    <transition name="modal" v-if="showModal">
+    <transition name="modal" v-if="showVideoModal">
       <div class="modal-mask" id="videoModal">
         <div class="modal-wrapper">
           <div class="modal-container">
             <div class="modal-body">
+              <button type="button" class="close" @click="showVideoModal = false" ><span aria-hidden="true">&times;</span></button>
+
               <iframe width="460" height="230" src="//www.youtube.com/embed/xRlxzrut0BQ?autoplay=1&amp;cc_load_policy=1&amp;color=null&amp;controls=1&amp;disablekb=0&amp;enablejsapi=0&amp;end=null&amp;fs=1&amp;h1=null&amp;iv_load_policy=1&amp;list=null&amp;listType=null&amp;loop=0&amp;modestbranding=null&amp;origin=null&amp;playlist=null&amp;playsinline=null&amp;rel=0&amp;showinfo=1&amp;start=0&amp;wmode=transparent&amp;theme=dark&amp;nocookie=false" frameborder="0" allowfullscreen="true" tabindex="-1">
                </iframe>
             </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+    <transition name="modal" v-if="showLoginModal">
+      <div class="modal-mask loginModal" id="loginModal">
+        <div class="modal-wrapper">
+          <div class="modal-container">
+          <div class="modal-header">
+            <button type="button" class="close" @click="showLoginModal = false" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title"><img src="/img/logo.png"></h4>
+          </div>
+            <div class="modal-body">
+              <v-facebook-login app-id="1080059512175194"></v-facebook-login>
 
-           
+                <div v-if="err.length > 0">
+                  <div class="alert alert-warning">
+                    <ul>
+                      <li v-for="(text, i) in err" :key="i" v-text="text"></li>
+                    </ul>
+                  </div>
+                </div>
+                
+                  <div class="form-group">
+                    <input type="text" v-model="login.username" placeholder="Tài khoản" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" v-model="login.password" placeholder="Mật khẩu" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <div class="lds-facebook" v-if="loading"><div></div><div></div><div></div>
+                    </div>
+                    <a v-else href="#" class="btn btn-block btn-login" @click.prevent="handleLogin">Đăng nhập</a>
+                  </div>
+
+            </div>
+            <div class="modal-footer">
+              Chưa có tài khoản? <a href="#" @click.prevent="showLoginModal = false, showRegisterModal = true">Đăng ký tài khoản</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+    <transition name="modal" v-if="showRegisterModal">
+      <div class="modal-mask loginModal" id="registerModal">
+        <div class="modal-wrapper">
+          <div class="modal-container">
+          <div class="modal-header">
+            <button type="button" class="close" @click="showRegisterModal = false" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title"><img src="/img/logo.png"></h4>
+          </div>
+            <div class="modal-body">
+              <div v-if="err.length > 0">
+                <div class="alert alert-warning">
+                  <ul>
+                    <li v-for="(text, i) in err" :key="i" v-text="text"></li>
+                  </ul>
+                </div>
+              </div>
+              
+                <div class="form-group">
+                  <input type="text" v-model="regiser.username" placeholder="Tên đăng nhập" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="text" v-model="regiser.displayName" placeholder="Họ tên" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="email" v-model="regiser.email" placeholder="Email" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="password" v-model="regiser.password" placeholder="Mật khẩu" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="password" v-model="regiser.confirmPassword" placeholder="Xác nhạn mật khẩu" class="form-control">
+                </div>
+                <div class="form-group">
+                
+                  <a  href="#" class="btn btn-block btn-login" @click.prevent="handleRegister">
+                      <div class="lds-facebook" v-if="loading"><div></div><div></div><div></div>
+                        </div>
+                        <div v-else>Đăng ký</div>
+                  
+                  </a>
+                </div>
+              
+              </div>
+              <div class="modal-footer">
+              Đã có tài khoản? <a href="#" @click.prevent="showLoginModal = true, showRegisterModal = false">Đăng nhập</a>
+            </div>
           </div>
         </div>
       </div>
@@ -243,10 +257,18 @@
   </div>
 </template>
 <script>
+import VFacebookLogin from 'vue-facebook-login-component'
+import GoogleLogin from 'vue-google-login';
+
 export default {
+  components: {
+    VFacebookLogin, GoogleLogin
+  },
   data () {
     return {
-      showModal: false,
+      showVideoModal: false,
+      showLoginModal: false,
+      showRegisterModal: false,
       login: {
         username: '',
         password: ''
@@ -264,7 +286,12 @@ export default {
     }
   },
   mounted () {
-    console.log(JSON.parse(localStorage.getItem('checkUser')))
+    if (!localStorage.getItem('timeEnter')) {
+      localStorage.setItem('timeEnter', this.getDateTime())
+    }
+    if (!localStorage.getItem('ref')) {
+      localStorage.setItem('ref', document.referrer)
+    }
   },
   computed: {
     loggedUser () {
@@ -272,8 +299,57 @@ export default {
     }
   },
   methods: {
+    getDateTime() {
+      var now     = new Date(); 
+      var year    = now.getFullYear();
+      var month   = now.getMonth()+1; 
+      var day     = now.getDate();
+      var hour    = now.getHours();
+      var minute  = now.getMinutes();
+      var second  = now.getSeconds(); 
+      if(month.toString().length == 1) {
+          month = '0'+month;
+      }
+      if(day.toString().length == 1) {
+          day = '0'+day;
+      }   
+      if(hour.toString().length == 1) {
+          hour = '0'+hour;
+      }
+      if(minute.toString().length == 1) {
+          minute = '0'+minute;
+      }
+      if(second.toString().length == 1) {
+          second = '0'+second;
+      }   
+      var dateTime = year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;   
+      return dateTime;
+    },
+    logout () {
+      localStorage.clear()
+    },
+    openLogin () {
+      this.err = []
+      this.showLoginModal = true
+    },
+    openRegister () {
+      this.err = []
+      this.showRegisterModal = true
+    },
     playGame () {
+      if (!localStorage.getItem('timeStart')) {
+        localStorage.setItem('timeStart', this.getDateTime())
+      }
       this.$router.push({path: '/playgame'})
+    },
+    onSuccess(googleUser) {
+        console.log(googleUser);
+ 
+        // This only gets the user information: id, name, imageUrl and email
+        console.log(googleUser.getBasicProfile());
+    },
+    onFailure (err) {
+      console.log(err)
     },
     handleLogin () {
       this.loading = true
@@ -294,6 +370,7 @@ export default {
           localStorage.setItem('checkUser', JSON.stringify(resUser))
           app.logged = true
           app.loading = false
+          this.showLoginModal = false
           this.playGame()
         }).catch((err) => {
           console.log(err)
@@ -331,6 +408,7 @@ export default {
               localStorage.setItem('checkUser', JSON.stringify(regUser))
               app.logged = true
               app.loading = false
+              this.showRegisterModal = false
               this.playGame()
             })
             .catch((err) => {
@@ -351,6 +429,12 @@ export default {
 </script>
 
 <style lang="scss">
+.loginModal {
+  .modal-container {
+    width: 480px;
+    max-width: 100%;
+  }
+}
   .login-button {
     display: inline-block;
     padding: 10px 25px;
@@ -539,6 +623,10 @@ export default {
       height: 480px;
     }
   }
+}
+a.btn.btn-block.btn-login {
+    border: 1px solid;
+    color: #00abf8;
 }
 </style>
 

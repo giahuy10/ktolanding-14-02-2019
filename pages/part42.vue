@@ -38,7 +38,9 @@
                       </ul>
                     </div>
                   </div>
-                <button type="submit" class="step3__button-submit" @click="submit">Gửi</button>
+                  <div class="lds-facebook" v-if="loading"><div></div><div></div><div></div>
+                    </div>
+                <button v-else type="submit" class="step3__button-submit" @click="submit">Gửi</button>
                
             </div>
           </div>
@@ -57,13 +59,16 @@ export default {
         email: '',
         facebook: ''
       },
+      loading: false,
       err: []
     }
   },
   mounted () {
     let currentUser = JSON.parse(localStorage.getItem('checkUser'))
-    this.contact.name = currentUser.displayName
-    this.contact.email = currentUser.email
+    if (currentUser) {
+      this.contact.name = currentUser.displayName
+      this.contact.email = currentUser.email
+    }
   },
   methods: {
     submit () {
@@ -87,35 +92,39 @@ export default {
       }
     },
     saveData() {
+      this.loading = true
       let answer = JSON.parse(localStorage.getItem('answer'))
       let feedback = JSON.parse(localStorage.getItem('feedback'))
       let user = JSON.parse(localStorage.getItem('checkUser'))
- 
+      let timeEnter = localStorage.getItem('timeEnter')
+      let timeStart = localStorage.getItem('timeStart')
+      let ref = localStorage.getItem('ref')
       let dataSubmit = {
-        "entry.1739231776" : user.id, //id
-        "entry.107700235": this.contact.name, // name
-        "entry.34633191":  this.contact.address, // addres
-        "entry.1963400336": this.contact.phone, // phone
-        "entry.440095148": this.contact.email, // email
-        "entry.195027548": this.contact.facebook, // facebook
-        "entry.861160832": '', // time
-        "entry.1077345714": answer.q1, // 1
-        "entry.1177458888": answer.q2, //2
-        "entry.1051953135": answer.q3,
-        "entry.2023993189": answer.q4, // 4
-        "entry.657996662": answer.q5, // 5
-        "entry.1623166846": feedback.luckNumber, // lucky number
-        "entry.664695386": feedback.comment // feedback
+        user_id : user ? user.id : 0, //id
+        user_name : user ? user.username : 0, //id
+        full_name: this.contact.name, // name
+        address:  this.contact.address, // addres
+        phone: this.contact.phone, // phone
+        email: this.contact.email, // email
+        facebook: this.contact.facebook, // facebook
+        // is_correct: checking
+        a1: answer.q1, // 1
+        a2: answer.q2, //2
+        a3: answer.q3,
+        a4: answer.q4, // 4
+        a5: answer.q5, // 5
+        lucky_number: feedback.luckNumber, // lucky number
+        comment: feedback.comment, // feedback,
+        time_enter: timeEnter,
+        time_start: timeStart,
+        ref: ref
       }
       console.log(dataSubmit)
-      this.$axios.post('https://docs.google.com/forms/d/1rTF-oOAHwC070tRrXF5OqeLjYrTGfooXS86eXnCHqO0/formResponse', dataSubmit, {
-        headers: {
-          'Accept': 'application/xml',
-          'Content-Type': 'application/xml',
-        }
-      })
+      this.$axios.post('http://localhost:8000/api/event-xem-web-moi', dataSubmit)
       .then((res) => {
         console.log(res)
+        this.loading = false
+        this.$router.push({path: '/part5'})
       })
       .catch((err) => {
         console.log(err)
