@@ -8,18 +8,44 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: pkg.name,
+    title: 'Xem web mới ngay nhận quà liền tay',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: 'BẬT MÍ! KTO VIỆT NAM ĐÃ RA MẮT GIAO DIỆN WEBSITE HOÀN TOÀN MỚI, BẠN ĐÃ XEM THỬ CHƯA?' },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: 'Xem web mới ngay nhận quà liền tay'
+      },
+      {
+        hid: 'og:type',
+        property: 'og:type',
+        content: 'event'
+      },
+      {
+        hid: 'og:url',
+        property: 'og:url',
+        content: 'https://www.visitkorea.org.vn/xem-web-moi-ngay-nhan-qua-lien-tay/'
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: 'https://www.visitkorea.org.vn/xem-web-moi-ngay-nhan-qua-lien-tay/img/hero_background-1.jpg'
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: 'BẬT MÍ! KTO VIỆT NAM ĐÃ RA MẮT GIAO DIỆN WEBSITE HOÀN TOÀN MỚI, BẠN ĐÃ XEM THỬ CHƯA?'
+      }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: 'https://www.visitkorea.org.vn/wp-content/themes/kto/img/icons/favicon.ico' }
     ],
     script: [
       { src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js' },
-      { src: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' }
+      { src: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' },
+      { src: 'https://apis.google.com/js/api:client.js' }
     ],
 
   },
@@ -45,6 +71,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/vue2-smooth-scroll',
+    '~/plugins/google-login'
   ],
 
   /*
@@ -74,5 +102,8 @@ module.exports = {
     extend(config, ctx) {
       
     }
-  }
+  },
+  router: {
+    base: '/xem-web-moi-ngay-nhan-qua-lien-tay/'
+  },
 }

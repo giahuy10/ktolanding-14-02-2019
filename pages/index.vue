@@ -1,84 +1,11 @@
+
 <template>
   <div class="home">
-    <section class="slider">
-        <div class="banner">
-          <ul id="banner" class="">
-              <li>
-                <figure class="banner-image" style="background-image: url(/img/hero_background.jpg)" data-src="">
-                    <div class="banner-content">
-                      <h3>Xem web mới ngay</h3>
-                      <h4>Nhận quà liền tay</h4>
-                      <div class="banner-browser">
-                          <img src="/img/hero_background-1.jpg" >
-                      </div>
-                    </div>
-                </figure>
-              </li>
-          </ul>
-        </div>
-    </section>
-    <section class="reveal" id="reveal">
-        <div class="container">
-          <div class="row">
-              <div class="col-md-12">
-                <div class="reveal__inner">
-                    <h2 class="reveal__title">Bật mí! KTO Việt Nam đã ra mắt giao diện  website hoàn toàn mới, bạn đã xem thử chưa?</h2>
-                    <div class="reveal__intro">
-                      <p>Website KTO đã cập nhập giao diện mới đẹp hơn, nhiều tính năng mới mẻ hơn, tiếp tục cung cấp cho các độc giả nhiều thông tin hữu ích về du lịch Hàn Quốc<br> Hãy cùng tham gia event "Xem web mới ngay, nhận quà liền tay" do Tổng cục du lịch Hàn Quốc tại Việt Nam KTO tổ chức và nhận thật nhiều các phần quà may mắn đầu năm mới phát tài phát lộc nhé</p>
-                    </div>
-                </div>
-              </div>
-          </div>
-        </div>
-    </section>
-    <section class="prize" id="prize">
-        <div class="container">
-          <div class="row">
-              <div class="col-md-12">
-                <div class="prize__inner">
-                    <h2 class="prize__title">Giải thưởng</h2>
-                    <div class="prize__list">
-                      <div class="prize__item">
-                          <figure class="lazy prize__image" style="display: block; background-image: url(/img/gift_1.png);"></figure>
-                          <h3 class="prize__sub">05 Giải nhất</h3>
-                          <div class="prize__intro">
-                            <p>05 Thẻ quà tặng CGV trị giá <strong>1,000,000đ</strong></p>
-                          </div>
-                      </div>
-                      <div class="prize__item">
-                          <figure class="lazy prize__image" style="display: block; background-image: url(/img/gift_2.png);"></figure>
-                          <h3 class="prize__sub">10 Giải nhì</h3>
-                          <div class="prize__intro">
-                            <p>10 chiếc đế điện thoại hình nhân vật LINE KTO</p>
-                          </div>
-                      </div>
-                      <div class="prize__item">
-                          <figure class="lazy prize__image" style="display: block; background-image: url(/img/gift_3.png);"></figure>
-                          <h3 class="prize__sub">50 Giải ba</h3>
-                          <div class="prize__intro">
-                            <p>50 chiếc túi du lịch tiện dụng KTO</p>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="prize__one">
-                      <figure class="lazy prize__one--image" style="display: block; background-image: url(/img/gift_4.png);"></figure>
-                      <h3>
-                          <p>01 Giải dành cho đóng góp có ý nghĩa nhất cho website KTO <br>
-                          Vali du lịch cao cấp
-                          </p>
-                      </h3>
-                    </div>
-                    <div class="prize__one">
-                      <figure class="lazy prize__one--image" style="display: block; background-image: url(/img/gift_5.png);"></figure>
-                      <h3>
-                          <p>Ngoài ra, mỗi giải thưởng còn tặng kèm bộ sách hướng dẫn du lịch Hàn Quốc,</p>
-                      </h3>
-                    </div>
-                </div>
-              </div>
-          </div>
-        </div>
-    </section>
+    <Slider />
+    <Reveal />
+    <Prize />
+    
+    
     <section class="rules-play" id="rules-play">
         <div class="container">
           <div class="row">
@@ -92,7 +19,7 @@
                       </div>
                     </div>
                     <div class="rules-play__youtube" @click="showVideoModal = true">
-                      <figure class="lazy rules-play__background-image" style="display: block; background-image: url(/img/hero_background.jpg);">
+                      <figure class="lazy rules-play__background-image" style="display: block; background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/Video-pic.jpg);">
                           <a class="rules-play__button-play"></a>
                       </figure>
                     </div>
@@ -104,23 +31,51 @@
                         <p v-if="loggedUser">
                           Cảm ơn bạn đã đăng nhập với hế thống của chúng tôi
                         </p>
-                          <p v-else>Đăng nhập tài khoản KTO tại đây để trả lời các câu hỏi phía dưới nhé! Lưu ý: Nếu bạn chưa có tài khoản, có thể đăng nhập nhanh bằng tài khoản  Facebook hoặc Email cực tiện :)</p>
+                          <p v-else>Đăng nhập tài khoản KTO tại đây để trả lời các câu hỏi phía dưới nhé! <br>Lưu ý: Nếu bạn chưa có tài khoản, có thể đăng nhập nhanh bằng tài khoản Facebook!
+                            </p>
+                            <br>
+                            <!--  hoặc Email cực tiện :) -->
+                      </div>
+                    </div>
+                     <div class="rules-play__step1">
+                        <h4 class="rules-play__title">Bước 3</h4>
+                        <div class="rules-play__intro">
+                            <p>Trả lời các câu hỏi của sự kiện</p>
+                            <br>
+                        </div>
+                      </div>
+                       <div class="rules-play__step1">
+                      <h4 class="rules-play__title">Bước 4</h4>
+                      <div class="rules-play__intro">
+                          <p>Điền số may mắn, đóng góp ý kiến cho website KTO và đầy đủ thông tin cá nhân để có cơ hội nhận được các giải thưởng giá trị từ Tổng cục du lịch Hàn Quốc.</p>
+                          <br>
+                      </div>
+                    </div>
+                     <div class="rules-play__step1">
+                      <h4 class="rules-play__title">Bước 5</h4>
+                      <div class="rules-play__intro">
+                          <p>Share bài viết sự kiện trên trang Facebook cá nhân để hoàn tất phần thi của bạn. <br>
+                        Nếu bạn đã share trước đấy thì chỉ việc ngồi đợi kết quả thôi nhé!</p>
                       </div>
                     </div>
                     <div class="rules-play__user" v-if="!loggedUser">
-                      <button type="button" class="btn btn-primary btn-lg login-button" @click="openLogin" >
+                      <button type="button" class="btn btn-primary btn-lg register-button" @click="openLogin" >
                           Đăng nhập
                       </button>
-                      <button type="button" class="btn btn-primary btn-lg register-button"  @click="openRegister">
+                      <button type="button" class="btn btn-primary btn-lg login-button"  @click="openRegister">
                           Đăng ký
                       </button>
                     
                     </div>
                     <div class="rules-play__step1" v-else>
-                      <button type="button" class="btn btn-primary btn-lg register-button"  @click="playGame" >
+                      <h3 v-if="submited">Chúc mừng bạn  đã hoàn thành xong phần chơi!</h3>
+                      <button v-else type="button" class="btn btn-primary btn-lg register-button"  @click="playGame" >
                           Chơi
                       </button>
-                      <button type="button" class="btn btn-primary btn-lg login-button"  @click="logout" >
+
+                       <v-facebook-login v-if="loggedByFaceBook" app-id="231410754457280" @login="handleFacebookLogin" @logout="handleFacebookLogout"></v-facebook-login>
+                      
+                      <button type="button" v-else class="btn btn-primary btn-lg login-button"  @click="logout" >
                           Thoát
                       </button>
                     </div>
@@ -129,24 +84,9 @@
           </div>
         </div>
     </section>
-    <section class="event lazy" data-src="">
-        <div class="container">
-          <div class="row">
-              <div class="col-md-12">
-                <div class="event__inner">
-                    <h2 class="event__headline">Hãy rủ bạn bè cùng tham gia event "Xem web mới ngay, nhận quà liền tay" và cùng nhận những phần quà hấp dẫn nhất từ KTO Việt Nam, bạn nhé!</h2>
-                    <div class="event__intro">
-                      <p>Về Tổng cục du lịch Hàn Quốc tại Việt Nam<br>
-                          Tổng cục du lịch Hàn Quốc tại Việt Nam (Korea Tourism Organization - KTO) là cổng thông tin chính thống duy nhất về du lịch Hàn Quốc tại Việt Nam, quảng bá các sản phẩm, dịch vụ du lịch Hàn Quốc, đem đến nhiều thông tin hữu ích, những góc nhìn mới mẻ hơn về du lịch Hàn Quốc ở nhiều phương diện như<br>
-                          du lịch y tế, du lịch khen thưởng, du lịch cao cấp, làn sóng Hallyu ... 
-                      </p>
-                    </div>
-                    <figure class="event__image lazy" style="display: block; background-image: url(/img/hero2_image.png);"></figure>
-                </div>
-              </div>
-          </div>
-        </div>
-    </section>
+    
+    <Notice />
+    <Lady/>
    
 
 
@@ -158,7 +98,7 @@
             <div class="modal-body">
               <button type="button" class="close" @click="showVideoModal = false" ><span aria-hidden="true">&times;</span></button>
 
-              <iframe width="460" height="230" src="//www.youtube.com/embed/xRlxzrut0BQ?autoplay=1&amp;cc_load_policy=1&amp;color=null&amp;controls=1&amp;disablekb=0&amp;enablejsapi=0&amp;end=null&amp;fs=1&amp;h1=null&amp;iv_load_policy=1&amp;list=null&amp;listType=null&amp;loop=0&amp;modestbranding=null&amp;origin=null&amp;playlist=null&amp;playsinline=null&amp;rel=0&amp;showinfo=1&amp;start=0&amp;wmode=transparent&amp;theme=dark&amp;nocookie=false" frameborder="0" allowfullscreen="true" tabindex="-1">
+              <iframe width="460" height="230" src="//www.youtube.com/embed/lQnp6wVKiVE?autoplay=1&amp;cc_load_policy=1&amp;color=null&amp;controls=1&amp;disablekb=0&amp;enablejsapi=0&amp;end=null&amp;fs=1&amp;h1=null&amp;iv_load_policy=1&amp;list=null&amp;listType=null&amp;loop=0&amp;modestbranding=null&amp;origin=null&amp;playlist=null&amp;playsinline=null&amp;rel=0&amp;showinfo=1&amp;start=0&amp;wmode=transparent&amp;theme=dark&amp;nocookie=false" frameborder="0" allowfullscreen="true" tabindex="-1">
                </iframe>
             </div>
           </div>
@@ -171,11 +111,16 @@
           <div class="modal-container">
           <div class="modal-header">
             <button type="button" class="close" @click="showLoginModal = false" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title"><img src="/img/logo.png"></h4>
+            <h4 class="modal-title"><img src="/xem-web-moi-ngay-nhan-qua-lien-tay/img/logo.png"></h4>
           </div>
             <div class="modal-body">
-              <v-facebook-login app-id="1080059512175194"></v-facebook-login>
+              <v-facebook-login app-id="231410754457280" @login="handleFacebookLogin"></v-facebook-login>
 
+              <div class="br text-center">
+
+                  <span>hoặc</span>
+
+              </div>
                 <div v-if="err.length > 0">
                   <div class="alert alert-warning">
                     <ul>
@@ -191,14 +136,20 @@
                     <input type="password" v-model="login.password" placeholder="Mật khẩu" class="form-control">
                   </div>
                   <div class="form-group">
-                    <div class="lds-facebook" v-if="loading"><div></div><div></div><div></div>
-                    </div>
-                    <a v-else href="#" class="btn btn-block btn-login" @click.prevent="handleLogin">Đăng nhập</a>
+                     <a  href="#" class="btn btn-block btn-login" @click.prevent="handleLogin">
+                      <div class="lds-facebook" v-if="loading"><div></div><div></div><div></div>
+                        </div>
+                        <div v-else>Đăng nhập</div>
+                  
+                  </a>
                   </div>
 
             </div>
-            <div class="modal-footer">
-              Chưa có tài khoản? <a href="#" @click.prevent="showLoginModal = false, showRegisterModal = true">Đăng ký tài khoản</a>
+            <div class="forgot-password text-center">
+              <a href="https://www.visitkorea.org.vn/lostpassword/" target="_blank">Quên mật khẩu?</a>
+            </div>
+            <div class="modal-footer text-center">
+              Chưa có tài khoản? <a href="#" @click.prevent="showLoginModal = false, showRegisterModal = true, err = []">Đăng ký tài khoản</a>
             </div>
           </div>
         </div>
@@ -210,7 +161,7 @@
           <div class="modal-container">
           <div class="modal-header">
             <button type="button" class="close" @click="showRegisterModal = false" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title"><img src="/img/logo.png"></h4>
+            <h4 class="modal-title"><img src="/xem-web-moi-ngay-nhan-qua-lien-tay/img/logo.png"></h4>
           </div>
             <div class="modal-body">
               <div v-if="err.length > 0">
@@ -247,8 +198,8 @@
                 </div>
               
               </div>
-              <div class="modal-footer">
-              Đã có tài khoản? <a href="#" @click.prevent="showLoginModal = true, showRegisterModal = false">Đăng nhập</a>
+              <div class="modal-footer text-center">
+              Đã có tài khoản? <a href="#" @click.prevent="showLoginModal = true, showRegisterModal = false, err = []">Đăng nhập</a>
             </div>
           </div>
         </div>
@@ -257,12 +208,17 @@
   </div>
 </template>
 <script>
+import Lady from '../components/Lady'
+import Notice from '../components/Notice'
+import Prize from '../components/Prize'
+import Reveal from '../components/Reveal'
+import Slider from '../components/Slider'
+import GSignInButton from 'vue-google-signin-button'
 import VFacebookLogin from 'vue-facebook-login-component'
 import GoogleLogin from 'vue-google-login';
-
 export default {
   components: {
-    VFacebookLogin, GoogleLogin
+    VFacebookLogin, GoogleLogin, GSignInButton, Lady, Notice, Prize, Reveal, Slider
   },
   data () {
     return {
@@ -282,23 +238,95 @@ export default {
       },
       err: [],
       loading: false,
-      logged: false
+      logged: false,
+      googleSignInParams: {
+        client_id: '988475516864-d0c0tfeajoav2q9m506fedq34qp7mmcm.apps.googleusercontent.com'
+      },
+      submited: false,
+      loggedByFaceBook: false
     }
   },
   mounted () {
+    this.loggedByFaceBook = localStorage.getItem('loggedByFacebook')
+    this.submited = localStorage.getItem('submited')
     if (!localStorage.getItem('timeEnter')) {
       localStorage.setItem('timeEnter', this.getDateTime())
     }
     if (!localStorage.getItem('ref')) {
       localStorage.setItem('ref', document.referrer)
     }
+    if (!localStorage.getItem('visited')) {
+      let data = {
+        event_id: 1,
+        type: 1, 
+        data: document.referrer
+      }
+      this.$axios.post('https://ktoevents.lotteskywalk.tk/api/log', data)
+        .then((res) => {
+          localStorage.setItem('visited', true)
+        })
+        .catch((err)=> {
+          console.log(err)
+        })
+    }
   },
   computed: {
+    
     loggedUser () {
       return JSON.parse(localStorage.getItem('checkUser'))
     }
   },
   methods: {
+    handleFacebookLogout (data) {
+      localStorage.clear()
+      location.reload()
+    },
+    handleFacebookLogin (data) {
+      if (data.status === 'connected') {
+        let faceId = data.authResponse.userID
+        let resUser = {
+            id: faceId,
+            cookie: data.authResponse.accessToken,
+            username: 'FB_'+faceId,
+            email: '',
+            displayName: ''
+          }
+          localStorage.setItem('checkUser', JSON.stringify(resUser))
+        let logData = {
+                    event_id: 1,
+                    type: 6, 
+                    data: faceId
+                  }
+        this.$axios.post('https://ktoevents.lotteskywalk.tk/api/log', logData)
+          .then(response => console.log(response))
+          .catch(err => console.log(err))
+          this.showLoginModal = false
+          localStorage.setItem('loggedByFacebook', true)
+          this.playGame(faceId)
+
+      }
+    },
+    onSuccess(googleUser) {
+        console.log(googleUser);
+ 
+        // This only gets the user information: id, name, imageUrl and email
+        console.log(googleUser.getBasicProfile());
+    },
+    onFailure(googleUser) {
+        console.log(googleUser);
+
+    },
+    onSignInSuccess (googleUser) {
+      // `googleUser` is the GoogleUser object that represents the just-signed-in user.
+      // See https://developers.google.com/identity/sign-in/web/reference#users
+      const profile = googleUser.getBasicProfile() // etc etc
+      console.log(profile)
+      
+    },
+    onSignInError (error) {
+      // `error` contains any error occurred.
+      console.log('OH NOES', error)
+    },
     getDateTime() {
       var now     = new Date(); 
       var year    = now.getFullYear();
@@ -327,6 +355,7 @@ export default {
     },
     logout () {
       localStorage.clear()
+      location.reload()
     },
     openLogin () {
       this.err = []
@@ -336,11 +365,37 @@ export default {
       this.err = []
       this.showRegisterModal = true
     },
-    playGame () {
-      if (!localStorage.getItem('timeStart')) {
-        localStorage.setItem('timeStart', this.getDateTime())
-      }
-      this.$router.push({path: '/playgame'})
+    playGame (user_id = 0) {
+      let app = this
+      this.$axios.post('https://ktoevents.lotteskywalk.tk/api/event-xem-web-moi/check-user/'+user_id)
+      .then(res => {
+        if (res.data.length > 0) {
+          console.log('existed')
+          localStorage.setItem('submited', true)
+          location.reload()
+          
+        } else {
+          if (!localStorage.getItem('timeStart')) {
+            localStorage.setItem('timeStart', this.getDateTime())
+          }
+          let data = {
+                    event_id: 1,
+                    type: 4, 
+                    data: this.loggedUser
+                  }
+          this.$axios.post('https://ktoevents.lotteskywalk.tk/api/log', data)
+            .then((res) => {
+              console.log(res)
+            })
+            .catch((err)=> {
+              console.log(err)
+            })
+          this.$router.push({path: '/playgame'})
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+      
     },
     onSuccess(googleUser) {
         console.log(googleUser);
@@ -352,13 +407,18 @@ export default {
       console.log(err)
     },
     handleLogin () {
-      this.loading = true
+      
       this.err = []
       let app = this
       if (!this.login.username || !this.login.password) {
         this.err.push('Tài khoản và mật khẩu không được bỏ trống')
       } else {
-        this.$axios.post(`https://dev.visitkorea.org.vn/api/user/generate_auth_cookie/?username=${this.login.username}&password=${this.login.password}`).then((response) => {
+        this.loading = true
+        this.$axios.post(`https://www.visitkorea.org.vn/api/user/generate_auth_cookie/?username=${this.login.username}&password=${this.login.password}`).then((response) => {
+          if ( response.data.error ) {
+            this.err.push('Tài khoản hoặc mật khẩu không đúng')
+            app.loading = false
+          } else {
           let resUser = {
             id: response.data.user.id,
             cookie: response.data.cookie,
@@ -371,14 +431,29 @@ export default {
           app.logged = true
           app.loading = false
           this.showLoginModal = false
-          this.playGame()
+          // Store log
+          let data = {
+            event_id: 1,
+            type: 2, 
+            data: resUser
+          }
+          this.$axios.post('https://ktoevents.lotteskywalk.tk/api/log', data)
+            .then((res) => {
+              console.log(res)
+            })
+            .catch((err)=> {
+              console.log(err)
+            })
+          // redirect to game
+          this.playGame(response.data.user.id)
+          }
         }).catch((err) => {
           console.log(err)
         })
       }
     },
     handleRegister () {
-      this.loading = true
+      
       this.err = []
       if (!this.regiser.username) {
         this.err.push('Tài khoản không được bỏ trống')
@@ -393,11 +468,13 @@ export default {
         this.err.push('Xác nhận mật khẩu không đúng')
       }
       if (this.err.length < 1) {
+        this.loading = true
         let app = this
-         this.$axios.post('https://dev.visitkorea.org.vn/api/get_nonce/?controller=user&method=register').then((response) => {
+         this.$axios.post('https://www.visitkorea.org.vn/api/get_nonce/?controller=user&method=register').then((response) => {
           let nonce = response.data.nonce
-          this.$axios.post(`https://dev.visitkorea.org.vn/api/user/register/?username=${this.regiser.username}&user_pass=${this.regiser.password}&email=${this.regiser.email}&nonce=${nonce}&display_name=${this.regiser.displayName}`)
+          this.$axios.post(`https://www.visitkorea.org.vn/api/user/register/?username=${this.regiser.username}&user_pass=${this.regiser.password}&email=${this.regiser.email}&nonce=${nonce}&display_name=${this.regiser.displayName}`)
             .then((reg) => {
+              console.log(reg)
               let regUser = {
                 id: reg.data.user_id,
                 cookie: reg.data.cookie,
@@ -409,14 +486,25 @@ export default {
               app.logged = true
               app.loading = false
               this.showRegisterModal = false
-              this.playGame()
+              let data = {
+                event_id: 1,
+                type: 3, 
+                data: regUser
+              }
+              this.$axios.post('https://ktoevents.lotteskywalk.tk/api/log', data)
+                .then((res) => {
+                  console.log(res)
+                })
+                .catch((err)=> {
+                  console.log(err)
+                })
+              this.playGame(reg.data.user_id)
             })
             .catch((err) => {
-
-              console.log(err)
+              app.loading = false
+              this.err.push('Tài khoản hoặc email đã tồn tại')
             })
         }).catch((err) => {
-
           console.log(err)
         })
       }
@@ -429,10 +517,30 @@ export default {
 </script>
 
 <style lang="scss">
+.google-login-button {
+  button {
+    background-color: #dc4e41;
+    color: #fff;
+    border: 1px solid #dc4e41;
+    border-radius: 5px;
+    padding: 10px 20px;
+    width: 100%;
+  }
+  margin-top: 20px;
+  
+}
+.login-by-acc {
+    text-align: center;
+    margin: 20px 0;
+   
+}
 .loginModal {
   .modal-container {
     width: 480px;
     max-width: 100%;
+    @media screen and (max-width: 767px) {
+      width: 100%;
+    }
   }
 }
   .login-button {
@@ -444,7 +552,6 @@ export default {
     font-size: 13px;
         color: #FFF;
     background-color: #00abf8;
-    margin: 0 0 0 10px;
   }
   .register-button {
     display: inline-block;
@@ -465,9 +572,16 @@ export default {
     align-items: center;
   }
   #loginModal, #registerModal {
-    .modal-header {
-      border-bottom: 0;
-    }
+    .modal-header .close {
+    margin-top: -2px;
+    border: 1px solid #ccc;
+    font-weight: normal;
+    border-radius: 100%;
+    height: 25px;
+    color: #939393;
+    opacity: 1;
+    width: 25px;
+  }
     @media (min-width: 768px) {
       .modal-dialog {
           width: 460px;
@@ -475,6 +589,20 @@ export default {
           .modal-content {
             padding: 0 20px;
           }
+      }
+    }
+    a.btn.btn-block.btn-login {
+    border: 1px solid;
+    color: #fff;
+    background: #002b58;
+    padding: 10px;
+    
+    }
+    .modal-footer {
+      text-align: center;
+      font-weight: bold;
+      a {
+        color: #5b9e3d;
       }
     }
   }
@@ -560,12 +688,10 @@ export default {
   display: table;
   transition: opacity .3s ease;
 }
-
 .modal-wrapper {
   display: table-cell;
   vertical-align: middle;
 }
-
 .modal-container {
   width: 300px;
   margin: 0px auto;
@@ -576,20 +702,16 @@ export default {
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;
 }
-
 .modal-header h3 {
   margin-top: 0;
   color: #42b983;
 }
-
 .modal-body {
-  margin: 20px 0;
+  margin-top: 20px;
 }
-
 .modal-default-button {
   float: right;
 }
-
 /*
  * The following styles are auto-applied to elements with
  * transition="modal" when their visibility is toggled
@@ -598,15 +720,12 @@ export default {
  * You can easily play with the modal transition by editing
  * these styles.
  */
-
 .modal-enter {
   opacity: 0;
 }
-
 .modal-leave-active {
   opacity: 0;
 }
-
 .modal-enter .modal-container,
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
@@ -618,15 +737,77 @@ export default {
     background: 0;
     box-shadow: none;
     width: 840px;
+     @media screen and (max-width: 767px) {
+       width: 100% ;
+     }
     iframe {
       width: 100%;
       height: 480px;
+      @media screen and (max-width: 767px) {
+       height: 250px ;
+     }
     }
   }
 }
 a.btn.btn-block.btn-login {
     border: 1px solid;
-    color: #00abf8;
+    color: #fff;
+    background: #00abf8;
+    padding: 10px;
+}
+.rules-play__user {
+  @media screen and (max-width: 767px) {
+     margin: 30px 20px 0;
+  }
+   
+}
+.notice {
+  background: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/notice-bg.jpg);
+  color: #fff;
+  padding: 40px 0;
+  
+  .notice__inner {
+    font-size: 14px;
+    padding: 40px 0;
+    max-width: 770px;
+    margin: 0 auto;
+    text-align: justify;
+    @media screen and (max-width: 767px) {
+      padding: 0 20px;
+    }
+  }
+}
+button.v-facebook-login {
+    width: 100%;
+    padding: 10px 20px !important;
+}
+.forgot-password.text-center {
+    margin-bottom: 10px;
+    a {
+      color: #606060;
+    }
+}
+#loginModal {
+  .modal-body {
+    padding-bottom: 0;
+  }
+}
+button.v-facebook-login {
+    margin-bottom: 20px !important;
+    /* display: block; */
+}
+.br.text-center {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    position: relative;
+    span {
+      display: inline-block;
+      background: #fff;
+      top: -10px;
+      position: absolute;
+      padding: 0 10px;
+      left: 43%;
+    }
 }
 </style>
 

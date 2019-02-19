@@ -25,7 +25,7 @@
                             <label for="question_1_2">B. ktovietnam.org.vn</label>
                           </div>
                           <div class="inputGroup">
-                            <input type="radio" name="question_1"id="question_1_3" v-model="answer.q1" value="3"  />
+                            <input type="radio" name="question_1" id="question_1_3" v-model="answer.q1" value="3"  />
                             <label for="question_1_3">C. visitkorea.org.vn</label>
                           </div>
                           <div class="inputGroup">
@@ -61,16 +61,20 @@
                         <label>Tính năng mới nhất của Cổng thông tin chính thức KTO Việt Nam là gì?</label>
                         <div class="awser">
                           <div class="inputGroup">
-                            <input type="radio"id="question_3_1" name="question_3" v-model="answer.q3" value="1"  >
+                            <input type="radio" id="question_3_1" name="question_3" v-model="answer.q3" value="1"  >
                             <label  for="question_3_1">A. E-coupon giảm giá các dịch vụ tại Hàn Quốc</label>
                           </div>
                           <div class="inputGroup">
-                            <input type="radio"id="question_3_2" name="question_3" v-model="answer.q3" value="2"  >
+                            <input type="radio" id="question_3_2" name="question_3" v-model="answer.q3" value="2"  >
                             <label   for="question_3_2">B. Người dùng website có thể đăng bài trải nghiệm du lịch Hàn Quốc của chính mình</label>
                           </div>
                           <div class="inputGroup">
-                            <input type="radio"id="question_3_3" name="question_3" v-model="answer.q3" value="3"  >
+                            <input type="radio" id="question_3_3" name="question_3" v-model="answer.q3" value="3"  >
                             <label   for="question_3_3">C. E-book về du lịch Hàn Quốc</label>
+                          </div>
+                          <div class="inputGroup">
+                            <input type="radio" id="question_3_4" name="question_3" v-model="answer.q3" value="4"  >
+                            <label   for="question_3_4">D. Giới thiệu về du lịch khen thưởng MICE</label>
                           </div>
                         </div>
                       </div>
@@ -149,6 +153,20 @@ export default {
       err: []
     }
   },
+  mounted () {
+    let currentUser = JSON.parse(localStorage.getItem('checkUser'))
+    if (!currentUser || !currentUser.id) {
+      this.$router.push({path: '/'})
+    } else {
+      this.$axios.post('https://ktoevents.lotteskywalk.tk/api/event-xem-web-moi/check-user/'+currentUser.id)
+      .then(res => {
+        if (res.data.length > 0) {
+          this.$router.push({path: '/'})
+        }
+      })
+      .catch(err => console.log(err))
+    }
+  },
   methods: {
     submit () {
       this.err = []
@@ -189,7 +207,7 @@ export default {
     position: relative;
 
     label {
-      padding: 12px 30px;
+      padding: 12px 40px;
       width: 100%;
       display: block;
       text-align: left;
@@ -199,13 +217,15 @@ export default {
       z-index: 2;
       transition: color 200ms ease-in;
       overflow: hidden;
-
+      @media screen and (max-width: 767px) {
+          padding: 12px 30px 12px 40px;
+        }
       &:before {
         width: 10px;
         height: 10px;
         border-radius: 50%;
         content: '';
-        background-color: #5562eb;
+        // background-color: #5562eb;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -219,7 +239,7 @@ export default {
         width: 32px;
         height: 32px;
         content: '';
-        border: 2px solid #D1D7DC;
+        border: 2px solid #0caffa;
         background-color: #fff;
         background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
         background-repeat: no-repeat;
@@ -227,16 +247,19 @@ export default {
         border-radius: 50%;
         z-index: 2;
         position: absolute;
-        right: 30px;
+        left: 0;
         top: 50%;
         transform: translateY(-50%);
         cursor: pointer;
         transition: all 200ms ease-in;
+        @media screen and (max-width: 767px) {
+          left: 0;
+        }
       }
     }
 
     input:checked ~ label {
-      color: #fff;
+      color: #0caffa;
 
       &:before {
         transform: translate(-50%, -50%) scale3d(56, 56, 1);
@@ -244,8 +267,8 @@ export default {
       }
 
       &:after {
-        background-color: #54E0C7;
-        border-color: #54E0C7;
+        background-color: #0caffa;
+        border-color: #0caffa;
       }
     }
 
@@ -255,11 +278,14 @@ export default {
       order: 1;
       z-index: 2;
       position: absolute;
-      right: 30px;
+      left: 0;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
       visibility: hidden;
+      @media screen and (max-width: 767px) {
+        left: 0;
+      }
     }
   }
 

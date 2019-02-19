@@ -14,11 +14,11 @@
                       </p>
                      
                       
-                      <social-sharing @open="openSharing()" @change="changeSharing()" @close="closeSharing()" url="https://vuejs.org/"
-                      title="The Progressive JavaScript Framework"
-                      description="Intuitive, Fast and Composable MVVM for building interactive interfaces."
+                      <social-sharing @open="openSharing()" @change="changeSharing()" @close="closeSharing()" url="http://bit.ly/xemwebmoingay-nhanqualientay"
+                      title="Xem web mới ngay nhận quà liền tay cùng KTO"
+                      description="Xem web mới ngay nhận quà liền tay cùng KTO"
                       quote="Vue is a progressive framework for building user interfaces."
-                      hashtags="vuejs,javascript,framework"
+                      hashtags="kto,website,new"
                       twitter-user="vuejs"
                       inline-template>
                       <div class="facebook-share">
@@ -49,7 +49,7 @@
                           du lịch y tế, du lịch khen thưởng, du lịch cao cấp, làn sóng Hallyu ... 
                       </p>
                     </div>
-                    <figure class="event__image lazy" style="display: block; background-image: url(/img/hero2_image.png);"></figure>
+                    <figure class="event__image lazy" style="display: block; background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/hero2_image.png);"></figure>
                 </div>
               </div>
           </div>
@@ -78,6 +78,20 @@ export default {
       console.log('change')
     }
   },
+  mounted () {
+    let currentUser = JSON.parse(localStorage.getItem('checkUser'))
+    if (!currentUser || !currentUser.id) {
+      this.$router.push({path: '/'})
+    } else {
+      this.$axios.post('https://ktoevents.lotteskywalk.tk/api/event-xem-web-moi/check-user/'+currentUser.id)
+      .then(res => {
+        if (res.data.length > 0) {
+          this.$router.push({path: '/'})
+        }
+      })
+      .catch(err => console.log(err))
+    }
+  }
 }
 </script>
 
@@ -87,7 +101,7 @@ export default {
     position: initial;
   }
   section#shareFacebok {
-      background:url(/img/background-step5.jpg);
+      background:url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/background-step5.jpg);
       padding: 120px 0 480px;
       @media screen and (max-width: 767px) {
         padding: 120px 40px;

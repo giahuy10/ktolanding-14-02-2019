@@ -28,7 +28,7 @@
                     </div>                                                                                
                   </div>
                   <div class="col-xs-12 col-md-6">
-                    <img class="facebook-url" src="/img/get-facebook-url.jpg" alt="">
+                    <img class="facebook-url" src="/xem-web-moi-ngay-nhan-qua-lien-tay/img/get-facebook-url.jpg" alt="">
                   </div>
                 </div>
                 <div v-if="err.length > 0">
@@ -38,9 +38,15 @@
                       </ul>
                     </div>
                   </div>
+                <a  href="#" class="btn btn-block btn-login" @click.prevent="submit">
+                      <div class="lds-facebook" v-if="loading"><div></div><div></div><div></div>
+                        </div>
+                        <div v-else>Gửi</div>
+                  
+                  </a>
                   <div class="lds-facebook" v-if="loading"><div></div><div></div><div></div>
                     </div>
-                <button v-else type="submit" class="step3__button-submit" @click="submit">Gửi</button>
+              
                
             </div>
           </div>
@@ -69,6 +75,18 @@ export default {
       this.contact.name = currentUser.displayName
       this.contact.email = currentUser.email
     }
+    if (!currentUser || !currentUser.id) {
+      this.$router.push({path: '/'})
+    } else {
+      this.$axios.post('https://ktoevents.lotteskywalk.tk/api/event-xem-web-moi/check-user/'+currentUser.id)
+      .then(res => {
+        if (res.data.length > 0) {
+          this.$router.push({path: '/'})
+        }
+      })
+      .catch(err => console.log(err))
+    }
+    
   },
   methods: {
     submit () {
@@ -85,11 +103,40 @@ export default {
       if (!this.contact.email) {
         this.err.push('Vui lòng nhập email')
       }
+      if (!this.contact.facebook) {
+        this.err.push('Vui lòng nhập facebook')
+      }
       if (this.err.length < 1) {
         this.saveData()
         localStorage.setItem('contact', JSON.stringify(this.contact))
         // this.$router.push({path: 'part5'})
       }
+    },
+    getDateTime() {
+      var now     = new Date(); 
+      var year    = now.getFullYear();
+      var month   = now.getMonth()+1; 
+      var day     = now.getDate();
+      var hour    = now.getHours();
+      var minute  = now.getMinutes();
+      var second  = now.getSeconds(); 
+      if(month.toString().length == 1) {
+          month = '0'+month;
+      }
+      if(day.toString().length == 1) {
+          day = '0'+day;
+      }   
+      if(hour.toString().length == 1) {
+          hour = '0'+hour;
+      }
+      if(minute.toString().length == 1) {
+          minute = '0'+minute;
+      }
+      if(second.toString().length == 1) {
+          second = '0'+second;
+      }   
+      var dateTime = year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;   
+      return dateTime;
     },
     saveData() {
       this.loading = true
@@ -117,14 +164,34 @@ export default {
         comment: feedback.comment, // feedback,
         time_enter: timeEnter,
         time_start: timeStart,
-        ref: ref
+        time_submit: this.getDateTime(),
+        ref: ref ? ref : 'Directly'
       }
       console.log(dataSubmit)
-      this.$axios.post('http://localhost:8000/api/event-xem-web-moi', dataSubmit)
+      this.$axios.post('https://ktoevents.lotteskywalk.tk/api/event-xem-web-moi', dataSubmit)
       .then((res) => {
-        console.log(res)
+        let data = {
+                event_id: 1,
+                type: 5, 
+                data: dataSubmit
+              }
+        this.$axios.post('https://ktoevents.lotteskywalk.tk/api/log', data)
+          .then((res) => {
+            console.log(res)
+          })
+          .catch((err)=> {
+            console.log(err)
+          })
         this.loading = false
-        this.$router.push({path: '/part5'})
+        localStorage.setItem('submited', true)
+        let checkFacebook = ref.indexOf('facebook.com')
+        let checkPost = ref.indexOf('2698009633557600')
+        if (checkFacebook < 0 || checkPost < 0) {
+          this.$router.push({path: '/part5'})
+        } else {
+          this.$router.push({path: '/finish'})
+        }
+        
       })
       .catch((err) => {
         console.log(err)
@@ -134,7 +201,12 @@ export default {
 }
 </script>
 <style lang="scss">
-
+a.btn.btn-block.btn-login {
+    border: 1px solid;
+    color: #fff;
+    background: #00abf8;
+    padding: 10px;
+}
 .part42 {
   .head {
     position: initial;
@@ -149,6 +221,47 @@ export default {
     border: 1px solid #c0e2eb;
     margin-right: 10px;
     width: 100%;
+  }
+    .lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 34px;
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 6px;
+  width: 13px;
+  background: #fff;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 6px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 26px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 45px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 6px;
+    height: 45px;
+  }
+  50%, 100% {
+    top: 7px;
+    height: 26px;
+  }
+}
+}
+section.step4.part2{
+  @media screen and (max-width: 767px){
+    padding: 0
   }
 }
 </style>

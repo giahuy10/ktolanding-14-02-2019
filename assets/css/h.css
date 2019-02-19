@@ -1,9 +1,15 @@
 /********** Ratio **********/
-@import url('https://fonts.googleapis.com/css?family=Noto+Serif');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600|Roboto+Condensed');
+
+@font-face {
+    font-family: Gothambook;
+    src: url("/xem-web-moi-ngay-nhan-qua-lien-tay/img/fonts/GOTHAM-BOOK1_0.OTF") format("opentype");
+}
+
+
 body{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Gothambook', sans-serif;
     background: #FFF;
+    font-size: 16px;
 }
 a:hover{
     text-decoration: none;
@@ -41,8 +47,8 @@ a:focus {
     position: initial;
 }
 .logo img {
-    max-height: 40px;
-    margin: 25px 0;
+    max-height: 70px;
+    margin: 10px 0;
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
@@ -70,7 +76,7 @@ a:focus {
     position: relative;
 }
 .header__navigation>li>a {
-    font-size: 14px;
+    font-size: 16px;
     color: #00284c;
     height: 90px;
     font-weight: 500;
@@ -167,36 +173,42 @@ a:focus {
     position: absolute;
     bottom: 0;
     margin: 0 auto;
-    max-width: 700px;
+    max-width: 850px;
     left: 0;
     right: 0;
     text-align: center;
 }
 .banner-browser {
-    background-image: url('/img/hero_background_browser.jpg');
+    
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    padding-top: 14%;
+   
     border-radius: 5px 5px 0 0;
     box-shadow: 0 0 30px 1px #dadada;
     overflow: hidden;
 }
 .banner-browser img {
     max-width: 100%;
-    border: 5px solid #FFF;
+   
     border-bottom: none;
 }
 .banner-content>h3 {
     color: #002a57;
     text-transform: uppercase;
-    font-size: 24px;
+    font-size: 30px;
 }
 .banner-content>h4 {
     color: #018fba;
     text-transform: uppercase;
-    font-size: 32px;
-    margin: 0 0 35px;
+    font-size: 45px;
+    margin: 0 0 15px;
+}
+.banner-content > p {
+    margin-bottom: 20px;
+        margin-bottom: 20px;
+    font-size: 20px;
+    color: #706f6f;
 }
 .banner-image {
     position: relative;
@@ -233,15 +245,15 @@ a:focus {
 .reveal {
     background-color: #ea8a30;
     color: #FFF;
-    padding: 120px 0 160px;
-    background-image: url(/img/about_background.png);
+    padding: 80px 0 160px;
+    background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/about_background.png);
     background-position: center bottom;
-    background-repeat-y: no-repeat;
+    background-repeat: no-repeat;
     background-size: contain;
 }
 .reveal__inner {
     text-align: center;
-    max-width: 650px;
+    max-width: 850px;
     margin: 0 auto;
     position: relative;
 }
@@ -253,19 +265,20 @@ a:focus {
     position: absolute;
     right: -180px;
     top: 25%;
-    background-image: url(/img/a.png);
+    background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/a.png);
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: 0 0;
 }
 .reveal__title {
-    margin: 0 0 15px;
+    margin: 0 0 30px;
     text-transform: uppercase;
-    font-size: 24px;
+    font-size: 30px;
+    font-weight: 500;
 }
 .prize {
     background-color: #d0eff7;
-    padding: 60px 0;
+    padding: 30px 0;
 }
 .prize__inner {
     max-width: 800px;
@@ -273,9 +286,9 @@ a:focus {
 }
 .prize__title {
     text-align: center;
-    font-size: 28px;
+    font-size: 36px;
     color: #002a57;
-    font-weight: 600;
+   
 }
 .prize__list {
     display: flex;
@@ -300,8 +313,8 @@ a:focus {
     display: block;
 }
 .prize__sub {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: 500;
     color: #002b5a;
 }
 .prize__intro {
@@ -332,13 +345,13 @@ a:focus {
 }
 .rules-play {
     padding: 100px 0 50px;
-    background-image: url(/img/game_background.png);
+    background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/game_background.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 .rules-play__inner {
-    max-width: 600px;
+    max-width: 770px;
     margin: 0 auto;
 }
 .rules-play__headline {
@@ -347,12 +360,19 @@ a:focus {
     text-align: center;
     background-size: contain;
     background-position: center;
-    font-weight: 600;
-    font-size: 28px;
+    font-weight: 500;
+    font-size: 48px;
 }
 .rules-play__title {
     color: #002b5a;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 24px;
+}
+.rules-play__intro {
+    color: #0a215a;
+}
+.rules-play__intro p span {
+    font-weight: 300;
 }
 .rules-play__background-image {
     position: relative;
@@ -378,10 +398,10 @@ a:focus {
     z-index: 0;
 }
 .rules-play__step1 {
-    margin: 0 50px;
+    
 }
 .rules-play__user {
-    margin: 30px 50px 0;
+    margin: 30px 0 0;
 }
 .rules-play__user a {
     display: inline-block;
@@ -408,7 +428,7 @@ a:focus {
     left: 0;
     right: 0;
     margin: auto;
-    background-image: url(/img/a.png);
+    background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/a.png);
     background-position: 1px -276px;
     background-size: 250px;
     background-repeat: no-repeat;
@@ -418,16 +438,16 @@ a:focus {
 .event {
     padding: 100px 0 0;
     background-position: top center;
-    background-image: url('/img/hero2_background.png');
+    background-image: url('/xem-web-moi-ngay-nhan-qua-lien-tay/img/hero2_background.png');
 }
 .event__headline {
     text-align: center;
-    max-width: 650px;
+    max-width: 770px;
     text-transform: uppercase;
-    font-size: 20px;
+    font-size: 30px;
     margin: 0 auto 30px;
-    line-height: 24px;
-    color: #002b5a;
+    line-height: 35px;
+    color: #002b5a
 }
 .event__intro {
     max-width: 650px;
@@ -447,7 +467,7 @@ a:focus {
     display: block;
 }
 .footer__brand {
-    background-image: url(/img/a.png);
+    background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/a.png);
     background-position: 1px -179px;
     width: 75px;
     height: 51px;
@@ -456,7 +476,7 @@ a:focus {
     margin: 0 15px 0 0;
 }
 .footer__brand2 {
-    background-image: url(/img/a.png);
+    background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/a.png);
     background-position: 1px -231px;
     width: 135px;
     height: 45px;
@@ -472,14 +492,14 @@ a:focus {
 }
 .step3 {
     padding: 0 60px;
-    background-image: url('/img/background-step3.jpg');
+    background-image: url('/xem-web-moi-ngay-nhan-qua-lien-tay/img/background-step3.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 .step4 {
     padding: 0 60px;
-    background-image: url('/img/background-step4-1.jpg');
+    background-image: url('/xem-web-moi-ngay-nhan-qua-lien-tay/img/1903x720.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -585,7 +605,7 @@ a:focus {
     outline: none;
 }
 .step5 {
-    background-image: url(/img/background-step5.png);
+    background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/background-step5.png);
     background-repeat: no-repeat;
     background-position: center bottom;
     padding: 50px 0;

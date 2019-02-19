@@ -37,7 +37,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-
+xem-web-moi-ngay-nhan-qua-lien-tay/
 # TypeScript v1 declaration files
 typings/
 

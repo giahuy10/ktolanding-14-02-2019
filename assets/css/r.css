@@ -620,7 +620,7 @@
         margin: 5px 0;
     }
     .banner-image::before{
-        padding-top: 55.6%;
+        padding-top: 80%;
     }
     .head2__logo{
         width: 100%;
@@ -852,12 +852,18 @@
     .product-relation__title span {
         padding: 0 15px;
     }
+    .banner-content {
+        bottom: 55px;
+    }
     .banner-content>h3 {
         font-size: 20px;
     }
     .banner-content>h4 {
         font-size: 18px;
-        margin: 0 0 50px;
+        margin: 0 0 5px;
+    }
+    .banner-content>p {
+        font-size: 14px;
     }
     .banner-browser {
         display: none;
