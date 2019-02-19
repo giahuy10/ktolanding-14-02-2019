@@ -6,7 +6,7 @@
           <div class="row">
               <div class="col-md-12">
                 <div class="step5__inner">
-                    <h1 class="step5__headline">Bước 5</h1>
+                    <!-- <h1 class="step5__headline">Bước 5</h1> -->
                     <div class="step5__intro">
                       <p>Like và share bài đăng của KTO trong đường link dưới đây lên tường của bạn với chế độ công khai:</p>
                       <p>
@@ -17,7 +17,7 @@
                       <social-sharing @open="openSharing()" @change="changeSharing()" @close="closeSharing()" url="http://bit.ly/xemwebmoingay-nhanqualientay"
                       title="Xem web mới ngay nhận quà liền tay cùng KTO"
                       description="Xem web mới ngay nhận quà liền tay cùng KTO"
-                      quote="Vue is a progressive framework for building user interfaces."
+               
                       hashtags="kto,website,new"
                       twitter-user="vuejs"
                       inline-template>
@@ -49,7 +49,7 @@
                           du lịch y tế, du lịch khen thưởng, du lịch cao cấp, làn sóng Hallyu ... 
                       </p>
                     </div>
-                    <figure class="event__image lazy" style="display: block; background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/hero2_image.png);"></figure>
+                    <figure class="event__image lazy" style="display: block; background-image: url(/img/hero2_image.png);"></figure>
                 </div>
               </div>
           </div>
@@ -78,19 +78,12 @@ export default {
       console.log('change')
     }
   },
-  mounted () {
+  
+  beforeCreate () {
     let currentUser = JSON.parse(localStorage.getItem('checkUser'))
     if (!currentUser || !currentUser.id) {
       this.$router.push({path: '/'})
-    } else {
-      this.$axios.post('https://ktoevents.lotteskywalk.tk/api/event-xem-web-moi/check-user/'+currentUser.id)
-      .then(res => {
-        if (res.data.length > 0) {
-          this.$router.push({path: '/'})
-        }
-      })
-      .catch(err => console.log(err))
-    }
+    } 
   }
 }
 </script>
@@ -101,7 +94,7 @@ export default {
     position: initial;
   }
   section#shareFacebok {
-      background:url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/background-step5.jpg);
+      background:url(/img/background-step5.jpg);
       padding: 120px 0 480px;
       @media screen and (max-width: 767px) {
         padding: 120px 40px;

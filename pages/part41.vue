@@ -4,7 +4,7 @@
       <div class="row">
           <div class="col-md-12">
             <div class="step3__inner">
-                <h1 class="step3__headline">Bước 4.1</h1>
+                <!-- <h1 class="step3__headline">Bước 4.1</h1> -->
                 <div class="step3__intro">
                   <p style="color: #002a5b"> <b>Hãy lựa chọn một số may mắn trong khoảng từ 1 - 1000 nhé!</b></p>
                 </div>
@@ -59,7 +59,7 @@ export default {
       }
     }
   },
-  mounted () {
+  beforeCreate () {
     let currentUser = JSON.parse(localStorage.getItem('checkUser'))
     if (!currentUser || !currentUser.id) {
       this.$router.push({path: '/'})
@@ -67,7 +67,7 @@ export default {
       this.$axios.post('https://ktoevents.lotteskywalk.tk/api/event-xem-web-moi/check-user/'+currentUser.id)
       .then(res => {
         if (res.data.length > 0) {
-          this.$router.push({path: '/'})
+          this.$router.push({path: '/finish'})
         }
       })
       .catch(err => console.log(err))

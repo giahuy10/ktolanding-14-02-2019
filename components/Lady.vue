@@ -11,7 +11,7 @@
                           du lịch y tế, du lịch khen thưởng, du lịch cao cấp, làn sóng Hallyu ... 
                       </p>
                     </div>
-                    <figure class="event__image lazy" style="display: block; background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/hero2_image.png);"></figure>
+                    <figure class="event__image lazy" style="display: block; background-image: url(/img/hero2_image.png);"></figure>
                 </div>
               </div>
           </div>

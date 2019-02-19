@@ -19,7 +19,7 @@
                       </div>
                     </div>
                     <div class="rules-play__youtube" @click="showVideoModal = true">
-                      <figure class="lazy rules-play__background-image" style="display: block; background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/Video-pic.jpg);">
+                      <figure class="lazy rules-play__background-image" style="display: block; background-image: url(/img/Video-pic.jpg);">
                           <a class="rules-play__button-play"></a>
                       </figure>
                     </div>
@@ -58,6 +58,7 @@
                         Nếu bạn đã share trước đấy thì chỉ việc ngồi đợi kết quả thôi nhé!</p>
                       </div>
                     </div>
+
                     <div class="rules-play__user" v-if="!loggedUser">
                       <button type="button" class="btn btn-primary btn-lg register-button" @click="openLogin" >
                           Đăng nhập
@@ -68,12 +69,14 @@
                     
                     </div>
                     <div class="rules-play__step1" v-else>
-                      <h3 v-if="submited">Chúc mừng bạn  đã hoàn thành xong phần chơi!</h3>
-                      <button v-else type="button" class="btn btn-primary btn-lg register-button"  @click="playGame" >
+                    
+                      <button type="button" class="btn btn-primary btn-lg register-button"  @click="playGame" >
                           Chơi
                       </button>
 
-                       <v-facebook-login v-if="loggedByFaceBook" app-id="231410754457280" @login="handleFacebookLogin" @logout="handleFacebookLogout"></v-facebook-login>
+                       <v-facebook-login v-if="loggedByFaceBook" :app-id="facebook_client_id" @login="handleFacebookLogin" @logout="handleFacebookLogout" >
+                          <template slot="logout">Đăng xuất khỏi Facebook</template>
+                       </v-facebook-login>
                       
                       <button type="button" v-else class="btn btn-primary btn-lg login-button"  @click="logout" >
                           Thoát
@@ -111,10 +114,16 @@
           <div class="modal-container">
           <div class="modal-header">
             <button type="button" class="close" @click="showLoginModal = false" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title"><img src="/xem-web-moi-ngay-nhan-qua-lien-tay/img/logo.png"></h4>
+            <h4 class="modal-title"><img src="/img/logo.png"></h4>
           </div>
             <div class="modal-body">
-              <v-facebook-login app-id="231410754457280" @login="handleFacebookLogin"></v-facebook-login>
+              <v-facebook-login :app-id="facebook_client_id" @login="handleFacebookLogin">
+                <template slot="login">
+                  <div>
+                    Đăng nhập bằng Facebook
+                  </div>
+                </template>
+              </v-facebook-login>
 
               <div class="br text-center">
 
@@ -161,7 +170,7 @@
           <div class="modal-container">
           <div class="modal-header">
             <button type="button" class="close" @click="showRegisterModal = false" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title"><img src="/xem-web-moi-ngay-nhan-qua-lien-tay/img/logo.png"></h4>
+            <h4 class="modal-title"><img src="/img/logo.png"></h4>
           </div>
             <div class="modal-body">
               <div v-if="err.length > 0">
@@ -185,7 +194,7 @@
                   <input type="password" v-model="regiser.password" placeholder="Mật khẩu" class="form-control">
                 </div>
                 <div class="form-group">
-                  <input type="password" v-model="regiser.confirmPassword" placeholder="Xác nhạn mật khẩu" class="form-control">
+                  <input type="password" v-model="regiser.confirmPassword" placeholder="Xác nhận mật khẩu" class="form-control">
                 </div>
                 <div class="form-group">
                 
@@ -199,6 +208,13 @@
               
               </div>
               <div class="modal-footer text-center">
+                <v-facebook-login :app-id="facebook_client_id" @login="handleFacebookLogin">
+                <template slot="login">
+                  <div>
+                    Đăng nhập bằng Facebook
+                  </div>
+                </template>
+              </v-facebook-login>
               Đã có tài khoản? <a href="#" @click.prevent="showLoginModal = true, showRegisterModal = false, err = []">Đăng nhập</a>
             </div>
           </div>
@@ -214,11 +230,11 @@ import Prize from '../components/Prize'
 import Reveal from '../components/Reveal'
 import Slider from '../components/Slider'
 import GSignInButton from 'vue-google-signin-button'
-import VFacebookLogin from 'vue-facebook-login-component'
+import VFacebookLogin  from 'vue-facebook-login-component'
 import GoogleLogin from 'vue-google-login';
 export default {
   components: {
-    VFacebookLogin, GoogleLogin, GSignInButton, Lady, Notice, Prize, Reveal, Slider
+    VFacebookLogin , GoogleLogin, GSignInButton, Lady, Notice, Prize, Reveal, Slider
   },
   data () {
     return {
@@ -243,7 +259,8 @@ export default {
         client_id: '988475516864-d0c0tfeajoav2q9m506fedq34qp7mmcm.apps.googleusercontent.com'
       },
       submited: false,
-      loggedByFaceBook: false
+      loggedByFaceBook: false,
+      facebook_client_id: '231410754457280'
     }
   },
   mounted () {
@@ -277,6 +294,10 @@ export default {
     }
   },
   methods: {
+    validEmail: function (email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
     handleFacebookLogout (data) {
       localStorage.clear()
       location.reload()
@@ -372,7 +393,7 @@ export default {
         if (res.data.length > 0) {
           console.log('existed')
           localStorage.setItem('submited', true)
-          location.reload()
+          this.$router.push({path: '/finish'})
           
         } else {
           if (!localStorage.getItem('timeStart')) {
@@ -466,6 +487,9 @@ export default {
       }
       if (this.regiser.password  !== this.regiser.confirmPassword) {
         this.err.push('Xác nhận mật khẩu không đúng')
+      }
+      if (!this.validEmail(this.regiser.email)) {
+        this.err.push('Email không đúng định dạng')
       }
       if (this.err.length < 1) {
         this.loading = true
@@ -762,7 +786,7 @@ a.btn.btn-block.btn-login {
    
 }
 .notice {
-  background: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/notice-bg.jpg);
+  background: url(/img/notice-bg.jpg);
   color: #fff;
   padding: 40px 0;
   

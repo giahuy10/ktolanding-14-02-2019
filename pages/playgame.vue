@@ -5,7 +5,7 @@
       <div class="row">
           <div class="col-md-12">
             <div class="step3__inner">
-                <h1 class="step3__headline">Bước 3</h1>
+                <!-- <h1 class="step3__headline">Bước 3</h1> -->
                 <div class="step3__intro">
                   <p>Hãy trả lời lần lượt các câu hỏi dưới đây về những cập nhật mới của website KTO. Suy nghĩ thật kỹ trước khi trả lời nhé bạn!</p>
                 </div>
@@ -131,7 +131,7 @@
                       </ul>
                     </div>
                   </div>
-                  <button type="submit" class="step3__button-submit" @click="submit">Hoàn thành</button>
+                  <button type="submit" class="step3__button-submit" @click="submit">Gửi câu trả lời</button>
                
             </div>
           </div>
@@ -153,7 +153,7 @@ export default {
       err: []
     }
   },
-  mounted () {
+  beforeCreate () {
     let currentUser = JSON.parse(localStorage.getItem('checkUser'))
     if (!currentUser || !currentUser.id) {
       this.$router.push({path: '/'})
@@ -161,7 +161,7 @@ export default {
       this.$axios.post('https://ktoevents.lotteskywalk.tk/api/event-xem-web-moi/check-user/'+currentUser.id)
       .then(res => {
         if (res.data.length > 0) {
-          this.$router.push({path: '/'})
+          this.$router.push({path: '/finish'})
         }
       })
       .catch(err => console.log(err))

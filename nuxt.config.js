@@ -31,7 +31,7 @@ module.exports = {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://www.visitkorea.org.vn/xem-web-moi-ngay-nhan-qua-lien-tay/img/hero_background-1.jpg'
+        content: 'https://www.visitkorea.org.vn/img/hero_background-1.jpg'
       },
       {
         hid: 'og:description',
@@ -104,6 +104,6 @@ module.exports = {
     }
   },
   router: {
-    base: '/xem-web-moi-ngay-nhan-qua-lien-tay/'
+    // base: '/xem-web-moi-ngay-nhan-qua-lien-tay/'
   },
 }

@@ -4,13 +4,13 @@
       <div class="row">
           <div class="col-md-12">
             <div class="step3__inner">
-                <h1 class="step3__headline">Bước 4.2</h1>
+                <!-- <h1 class="step3__headline">Bước 4.2</h1> -->
                 <div class="step3__intro">
                   <p>Hãy cung cấp đầy đủ thông tin cá nhân của bạn để KTO có thể liên hệ nhanh nhất khi bạn trúng giải nhé!</p>
                 </div>
                 
                 <div class="row">
-                  <div class="col-xs-12 col-md-6">
+                  <div class="col-xs-12">
                     <div class="form-group">
                       <input type="text" v-model="contact.name" placeholder="Họ và tên" class="form-control">
                     </div>
@@ -27,9 +27,7 @@
                       <input type="text" v-model="contact.facebook" placeholder="Link Facebook" class="form-control">
                     </div>                                                                                
                   </div>
-                  <div class="col-xs-12 col-md-6">
-                    <img class="facebook-url" src="/xem-web-moi-ngay-nhan-qua-lien-tay/img/get-facebook-url.jpg" alt="">
-                  </div>
+                  
                 </div>
                 <div v-if="err.length > 0">
                     <div class="alert alert-warning">
@@ -69,26 +67,44 @@ export default {
       err: []
     }
   },
-  mounted () {
+  beforeCreate () {
     let currentUser = JSON.parse(localStorage.getItem('checkUser'))
-    if (currentUser) {
-      this.contact.name = currentUser.displayName
-      this.contact.email = currentUser.email
-    }
     if (!currentUser || !currentUser.id) {
       this.$router.push({path: '/'})
     } else {
       this.$axios.post('https://ktoevents.lotteskywalk.tk/api/event-xem-web-moi/check-user/'+currentUser.id)
       .then(res => {
         if (res.data.length > 0) {
-          this.$router.push({path: '/'})
+          this.$router.push({path: '/finish'})
         }
       })
       .catch(err => console.log(err))
     }
-    
+  },
+  mounted () {
+    let currentUser = JSON.parse(localStorage.getItem('checkUser'))
+    if (currentUser) {
+      this.contact.name = currentUser.displayName
+      this.contact.email = currentUser.email
+    }
   },
   methods: {
+    validEmail: function (email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
+    is_url(str)
+    {
+      let regexp =  /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+            if (regexp.test(str))
+            {
+              return true;
+            }
+            else
+            {
+              return false;
+            }
+    },
     submit () {
       this.err = []
       if (!this.contact.name) {
@@ -103,8 +119,14 @@ export default {
       if (!this.contact.email) {
         this.err.push('Vui lòng nhập email')
       }
+      if (!this.validEmail(this.contact.email)) {
+        this.err.push('Email không đúng định dạng')
+      }
       if (!this.contact.facebook) {
         this.err.push('Vui lòng nhập facebook')
+      }
+      if (!this.is_url(this.contact.facebook) || this.contact.facebook.indexOf('facebook') < 0) {
+        this.err.push('Địa chỉ facebok không đúng định dạng: https://facebook.com/xxx')
       }
       if (this.err.length < 1) {
         this.saveData()
