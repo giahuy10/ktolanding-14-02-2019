@@ -19,7 +19,7 @@
                       </div>
                     </div>
                     <div class="rules-play__youtube" @click="showVideoModal = true">
-                      <figure class="lazy rules-play__background-image" style="display: block; background-image: url(/img/Video-pic.jpg);">
+                      <figure class="lazy rules-play__background-image" style="display: block; background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/Video-pic.jpg);">
                           <a class="rules-play__button-play"></a>
                       </figure>
                     </div>
@@ -29,7 +29,7 @@
                       <div class="rules-play__intro">
                        
                         <p v-if="loggedUser">
-                          Cảm ơn bạn đã đăng nhập với hế thống của chúng tôi
+                          Cảm ơn bạn đã đăng nhập với hệ thống của chúng tôi
                         </p>
                           <p v-else>Đăng nhập tài khoản KTO tại đây để trả lời các câu hỏi phía dưới nhé! <br>Lưu ý: Nếu bạn chưa có tài khoản, có thể đăng nhập nhanh bằng tài khoản Facebook!
                             </p>
@@ -47,7 +47,7 @@
                        <div class="rules-play__step1">
                       <h4 class="rules-play__title">Bước 4</h4>
                       <div class="rules-play__intro">
-                          <p>Điền số may mắn, đóng góp ý kiến cho website KTO và đầy đủ thông tin cá nhân để có cơ hội nhận được các giải thưởng giá trị từ Tổng cục du lịch Hàn Quốc.</p>
+                          <p>Điền số may mắn, đóng góp ý kiến cho website KTO và điền đầy đủ thông tin cá nhân để có cơ hội nhận được các giải thưởng giá trị từ Tổng cục du lịch Hàn Quốc.</p>
                           <br>
                       </div>
                     </div>
@@ -70,7 +70,7 @@
                     </div>
                     <div class="rules-play__step1" v-else>
                     
-                      <button type="button" class="btn btn-primary btn-lg register-button"  @click="playGame" >
+                      <button type="button" style="margin-bottom: 20px; display: inline-block" class="btn btn-primary btn-lg register-button"  @click="playGame" >
                           Chơi
                       </button>
 
@@ -78,7 +78,7 @@
                           <template slot="logout">Đăng xuất khỏi Facebook</template>
                        </v-facebook-login>
                       
-                      <button type="button" v-else class="btn btn-primary btn-lg login-button"  @click="logout" >
+                      <button type="button" style="margin-bottom: 20px; display: inline-block" v-else class="btn btn-primary btn-lg login-button"  @click="logout" >
                           Thoát
                       </button>
                     </div>
@@ -114,7 +114,7 @@
           <div class="modal-container">
           <div class="modal-header">
             <button type="button" class="close" @click="showLoginModal = false" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title"><img src="/img/logo.png"></h4>
+            <h4 class="modal-title"><img src="/xem-web-moi-ngay-nhan-qua-lien-tay/img/logo.png"></h4>
           </div>
             <div class="modal-body">
               <v-facebook-login :app-id="facebook_client_id" @login="handleFacebookLogin">
@@ -170,7 +170,7 @@
           <div class="modal-container">
           <div class="modal-header">
             <button type="button" class="close" @click="showRegisterModal = false" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title"><img src="/img/logo.png"></h4>
+            <h4 class="modal-title"><img src="/xem-web-moi-ngay-nhan-qua-lien-tay/img/logo.png"></h4>
           </div>
             <div class="modal-body">
               <div v-if="err.length > 0">
@@ -786,7 +786,7 @@ a.btn.btn-block.btn-login {
    
 }
 .notice {
-  background: url(/img/notice-bg.jpg);
+  background: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/notice-bg.jpg);
   color: #fff;
   padding: 40px 0;
   
@@ -832,6 +832,32 @@ button.v-facebook-login {
       padding: 0 10px;
       left: 43%;
     }
+}
+@media only screen and (max-width: 600px) and (min-width: 400px) {
+.banner-content {
+    bottom: 80px;
+}
+}
+@media only screen and (max-width: 800px) and (min-width: 768px) {
+.banner-content {
+    bottom: 210px;
+    h3 {
+      font-size: 40px;
+    }
+    h4 {
+      font-size: 50px;
+    }
+    p {
+      font-size: 20px;
+    }
+}
+}
+@media only screen and (max-width: 1100px) and (min-width: 990px) {
+  .reveal__inner {
+   
+    max-width: 650px;
+   
+}
 }
 </style>
 

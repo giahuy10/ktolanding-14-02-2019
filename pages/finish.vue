@@ -11,7 +11,7 @@
                       <br>
                       <br>
                       
-                       <img src="/img/Korean.png" style="width: 120px;" alt="">
+                       <img src="/xem-web-moi-ngay-nhan-qua-lien-tay/img/Korean.png" style="width: 120px;" alt="">
                       <h3>Chúc mừng </h3>
                       <p> <span>Bạn đã hoàn thành xong phần chơi </span> <br>
                       Bạn hãy quay lại fanpage KTO vào ngày 12/3/2019 để xem thông báo kết quả nhé
@@ -31,7 +31,7 @@
                 <div class="event__inner">
                     <h2 class="event__headline">Hãy rủ bạn bè cùng tham gia event "Xem web mới ngay, nhận quà liền tay" và cùng nhận những phần quà hấp dẫn nhất từ KTO Việt Nam, bạn nhé!</h2>
                     
-                    <figure class="event__image lazy" style="display: block; background-image: url(/img/hero2_image.png);"></figure>
+                    <figure class="event__image lazy" style="display: block; background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/hero2_image.png);"></figure>
                 </div>
               </div>
           </div>
@@ -69,10 +69,11 @@ export default {
     position: initial;
   }
   section#shareFacebok {
-      background:url(/img/background-step5.jpg);
+      background:url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/background-step5.jpg);
       padding: 120px 0 380px;
       @media screen and (max-width: 767px) {
         padding: 120px 40px;
+        background: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/bg_mobile.jpg)
       }
       @media screen and (min-width: 1120px) and (max-width: 1400px) {
        

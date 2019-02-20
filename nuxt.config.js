@@ -31,7 +31,7 @@ module.exports = {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://www.visitkorea.org.vn/img/hero_background-1.jpg'
+        content: 'https://www.visitkorea.org.vn/xem-web-moi-ngay-nhan-qua-lien-tay/img/hero_background-1.jpg'
       },
       {
         hid: 'og:description',
@@ -40,7 +40,7 @@ module.exports = {
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: 'https://www.visitkorea.org.vn/wp-content/themes/kto/img/icons/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: 'https://www.visitkorea.org.vn/wp-content/themes/kto/xem-web-moi-ngay-nhan-qua-lien-tay/img/icons/favicon.ico' }
     ],
     script: [
       { src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js' },
@@ -104,6 +104,6 @@ module.exports = {
     }
   },
   router: {
-    // base: '/xem-web-moi-ngay-nhan-qua-lien-tay/'
+    base: '/xem-web-moi-ngay-nhan-qua-lien-tay/'
   },
 }

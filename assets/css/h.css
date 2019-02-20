@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: Gothambook;
-    src: url("/img/fonts/GOTHAM-BOOK1_0.OTF") format("opentype");
+    src: url("/xem-web-moi-ngay-nhan-qua-lien-tay/img/fonts/GOTHAM-BOOK1_0.OTF") format("opentype");
 }
 
 
@@ -246,7 +246,7 @@ a:focus {
     background-color: #ea8a30;
     color: #FFF;
     padding: 80px 0 160px;
-    background-image: url(/img/about_background.png);
+    background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/about_background.png);
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: contain;
@@ -265,7 +265,7 @@ a:focus {
     position: absolute;
     right: -180px;
     top: 25%;
-    background-image: url(/img/a.png);
+    background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/a.png);
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: 0 0;
@@ -345,7 +345,7 @@ a:focus {
 }
 .rules-play {
     padding: 100px 0 50px;
-    background-image: url(/img/game_background.png);
+    background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/game_background.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -428,7 +428,7 @@ a:focus {
     left: 0;
     right: 0;
     margin: auto;
-    background-image: url(/img/a.png);
+    background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/a.png);
     background-position: 1px -276px;
     background-size: 250px;
     background-repeat: no-repeat;
@@ -438,7 +438,7 @@ a:focus {
 .event {
     padding: 100px 0 0;
     background-position: top center;
-    background-image: url('/img/hero2_background.png');
+    background-image: url('/xem-web-moi-ngay-nhan-qua-lien-tay/img/hero2_background.png');
 }
 .event__headline {
     text-align: center;
@@ -467,7 +467,7 @@ a:focus {
     display: block;
 }
 .footer__brand {
-    background-image: url(/img/a.png);
+    background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/a.png);
     background-position: 1px -179px;
     width: 75px;
     height: 51px;
@@ -476,7 +476,7 @@ a:focus {
     margin: 0 15px 0 0;
 }
 .footer__brand2 {
-    background-image: url(/img/a.png);
+    background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/a.png);
     background-position: 1px -231px;
     width: 135px;
     height: 45px;
@@ -492,14 +492,14 @@ a:focus {
 }
 .step3 {
     padding: 0 60px;
-    background-image: url('/img/background-step3.jpg');
+    background-image: url('/xem-web-moi-ngay-nhan-qua-lien-tay/img/background-step3.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 .step4 {
     padding: 0 60px;
-    background-image: url('/img/1903x720.jpg');
+    background-image: url('/xem-web-moi-ngay-nhan-qua-lien-tay/img/1903x720.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -605,7 +605,7 @@ a:focus {
     outline: none;
 }
 .step5 {
-    background-image: url(/img/background-step5.png);
+    background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/background-step5.png);
     background-repeat: no-repeat;
     background-position: center bottom;
     padding: 50px 0;

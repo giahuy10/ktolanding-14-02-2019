@@ -7,7 +7,7 @@
                     <div class="col-md-3">
                         <h1 class="logo-headline" title="KTO - Landing page">                        
                         <a class="logo" href="#" @click.prevent="$router.push({path: '/'})">
-                            <img src="/img/logo-kto.png" alt="Calista">
+                            <img src="/xem-web-moi-ngay-nhan-qua-lien-tay/img/logo-kto.png" alt="Calista">
                         </a>
                         </h1>                    </div>
                     <div class="col-md-9">
@@ -20,7 +20,7 @@
                             </ul>
                             <div class="navigation__mobile">
                                 <div class="logo__mobile">
-                                    <img src="/img/logo.png" alt="Calista">
+                                    <img src="/xem-web-moi-ngay-nhan-qua-lien-tay/img/logo.png" alt="Calista">
                                 </div>
                                 <ul id="menu-header" class="header__navigation--mobile"><li id="menu-item-1967" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-81 current_page_item menu-item-1967"><a href="https://www.visitkorea.org.vn/xem-web-moi-ngay-nhan-qua-lien-tay/">Giới thiệu</a></li>
                                 <li id="menu-item-1973" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1973"><a href="http://dweb.vn">Giải thưởng</a></li>

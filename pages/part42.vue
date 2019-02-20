@@ -125,7 +125,7 @@ export default {
       if (!this.contact.facebook) {
         this.err.push('Vui lòng nhập facebook')
       }
-      if (!this.is_url(this.contact.facebook) || this.contact.facebook.indexOf('facebook') < 0) {
+      if (!this.is_url(this.contact.facebook) || this.contact.facebook.indexOf('facebook.com') < 0) {
         this.err.push('Địa chỉ facebok không đúng định dạng: https://facebook.com/xxx')
       }
       if (this.err.length < 1) {

@@ -9,12 +9,10 @@
                     <!-- <h1 class="step5__headline">Bước 5</h1> -->
                     <div class="step5__intro">
                       <p>Like và share bài đăng của KTO trong đường link dưới đây lên tường của bạn với chế độ công khai:</p>
-                      <p>
-                        bit.ly/xemwebmoingay-nhanqualientay
-                      </p>
+                      
                      
                       
-                      <social-sharing @open="openSharing()" @change="changeSharing()" @close="closeSharing()" url="http://bit.ly/xemwebmoingay-nhanqualientay"
+                      <social-sharing @open="openSharing()" @change="changeSharing()" @close="closeSharing()" url="https://www.facebook.com/565634410128477/posts/2698009633557600/"
                       title="Xem web mới ngay nhận quà liền tay cùng KTO"
                       description="Xem web mới ngay nhận quà liền tay cùng KTO"
                
@@ -49,7 +47,7 @@
                           du lịch y tế, du lịch khen thưởng, du lịch cao cấp, làn sóng Hallyu ... 
                       </p>
                     </div>
-                    <figure class="event__image lazy" style="display: block; background-image: url(/img/hero2_image.png);"></figure>
+                    <figure class="event__image lazy" style="display: block; background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/hero2_image.png);"></figure>
                 </div>
               </div>
           </div>
@@ -94,7 +92,7 @@ export default {
     position: initial;
   }
   section#shareFacebok {
-      background:url(/img/background-step5.jpg);
+      background:url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/background-step5.jpg);
       padding: 120px 0 480px;
       @media screen and (max-width: 767px) {
         padding: 120px 40px;

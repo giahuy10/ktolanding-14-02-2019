@@ -3,14 +3,14 @@
       <div class="banner">
         <ul id="banner" class="">
             <li>
-              <figure class="banner-image" style="background-image: url(/img/hero_background.jpg)" data-src="">
+              <figure class="banner-image" style="background-image: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/hero_background.jpg)" data-src="">
                   <div class="banner-content">
                     <h3>Xem web mới ngay</h3>
                     <h4>Nhận quà liền tay</h4>
                     <p>(Thời gian event từ 20/2 đến 5/3/2019)</p>
                     <br><br><br>
                     <div class="banner-browser">
-                        <img src="/img/hero_background-2.jpg" >
+                        <img src="/xem-web-moi-ngay-nhan-qua-lien-tay/img/hero_background-2.jpg" >
                     </div>
                   </div>
               </figure>
