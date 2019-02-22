@@ -12,12 +12,7 @@
                       
                      
                       
-                      <social-sharing @open="openSharing()" @change="changeSharing()" @close="closeSharing()" url="https://www.facebook.com/565634410128477/posts/2698009633557600/"
-                      title="Xem web mới ngay nhận quà liền tay cùng KTO"
-                      description="Xem web mới ngay nhận quà liền tay cùng KTO"
-               
-                      hashtags="kto,website,new"
-                      twitter-user="vuejs"
+                      <!-- <social-sharing @open="openSharing()" @change="changeSharing()" @close="closeSharing()" url="https://www.facebook.com/565634410128477/posts/2698009633557600/"
                       inline-template>
                       <div class="facebook-share">
                           
@@ -26,7 +21,9 @@
                           </network>
                           
                       </div>
-                    </social-sharing>
+                    </social-sharing> -->
+                    <div class="facebook-share"><a target="_blank" @click="$router.push({path: '/finish'})" href="https://www.facebook.com/KTOVietNam/posts/2715611665130730"><i class="fa fa-facebook"></i> Chia sẻ Facebook
+                        </a></div>
                     </div>
                 </div>
               </div>
@@ -95,7 +92,12 @@ export default {
       background:url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/background-step5.jpg);
       padding: 120px 0 480px;
       @media screen and (max-width: 767px) {
-        padding: 120px 40px;
+        padding:75px 60px 130px;
+        background: url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/375x415.jpg)
+      }
+      @media screen and (min-width: 1200px) and (max-width: 1400px) {
+        padding: 120px 0 369px;
+        background-size: contain;
       }
   }
   h1.step5__headline {

@@ -9,7 +9,7 @@
                     
                     <div class="step5__intro text-center finished">
                       <br>
-                      <br>
+                     
                       
                        <img src="/xem-web-moi-ngay-nhan-qua-lien-tay/img/Korean.png" style="width: 120px;" alt="">
                       <h3>Chúc mừng </h3>
@@ -77,12 +77,28 @@ export default {
       }
       @media screen and (min-width: 1120px) and (max-width: 1400px) {
        
-        background-position: -270px;
-        padding: 0 0 380px;
+        background:url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/1366x620.jpg);
+        padding: 0 0 215px;
+        img {
+          width: 90px !important;
+        }
       }
       @media screen and (min-width: 990px) and (max-width: 1100px) {
         background-size: cover;
         background-position: -285px;
+      }
+      @media screen and (min-width: 2000px) {
+       
+        background:url(/xem-web-moi-ngay-nhan-qua-lien-tay/img/2560x620.jpg);
+        padding: 0 0 330px;
+        background-position: 140px;
+        background-repeat: no-repeat;
+        h3 {
+          font-size: 35px;
+        }
+        img {
+          width: 90px !important;
+        }
       }
   }
   h1.step5__headline {

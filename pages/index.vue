@@ -54,8 +54,7 @@
                      <div class="rules-play__step1">
                       <h4 class="rules-play__title">Bước 5</h4>
                       <div class="rules-play__intro">
-                          <p>Share bài viết sự kiện trên trang Facebook cá nhân để hoàn tất phần thi của bạn. <br>
-                        Nếu bạn đã share trước đấy thì chỉ việc ngồi đợi kết quả thôi nhé!</p>
+                          <p>Sh@re bài sự kiện trên tường cá nhân để hoàn tất phần thi của bạn nhé!</p>
                       </div>
                     </div>
 
@@ -139,7 +138,7 @@
                 </div>
                 
                   <div class="form-group">
-                    <input type="text" v-model="login.username" placeholder="Tài khoản" class="form-control">
+                    <input type="text" v-on:keyup.enter="$event.target.nextElementSibling.focus()" v-model="login.username" placeholder="Tài khoản" class="form-control">
                   </div>
                   <div class="form-group">
                     <input type="password" v-model="login.password" placeholder="Mật khẩu" class="form-control">
@@ -181,20 +180,20 @@
                 </div>
               </div>
               
-                <div class="form-group">
-                  <input type="text" v-model="regiser.username" placeholder="Tên đăng nhập" class="form-control">
-                </div>
-                <div class="form-group">
-                  <input type="text" v-model="regiser.displayName" placeholder="Họ tên" class="form-control">
-                </div>
-                <div class="form-group">
-                  <input type="email" v-model="regiser.email" placeholder="Email" class="form-control">
-                </div>
-                <div class="form-group">
-                  <input type="password" v-model="regiser.password" placeholder="Mật khẩu" class="form-control">
-                </div>
-                <div class="form-group">
-                  <input type="password" v-model="regiser.confirmPassword" placeholder="Xác nhận mật khẩu" class="form-control">
+                <div class="form-group register-group">
+                  <input type="text" v-on:keyup.enter="$event.target.nextElementSibling.focus()" v-model="regiser.username" placeholder="Tên đăng nhập" class="form-control">
+
+                   <input type="password" v-on:keyup.enter="$event.target.nextElementSibling.focus()" v-model="regiser.password" placeholder="Mật khẩu" class="visible-xs form-control">
+
+                  <input type="text" v-on:keyup.enter="$event.target.nextElementSibling.focus()" v-model="regiser.displayName" placeholder="Họ tên" class="form-control">
+               
+                   <input type="password" id="confirm-password" v-on:keyup.enter="$event.target.nextElementSibling.focus()" v-model="regiser.confirmPassword" placeholder="Xác nhận mật khẩu" class="form-control visible-xs ">
+
+                  <input type="email" v-on:keyup.enter="$event.target.nextElementSibling.focus()" v-model="regiser.email" placeholder="Email" class="form-control">
+                
+                  <input type="password" v-on:keyup.enter="$event.target.nextElementSibling.focus()" v-model="regiser.password" placeholder="Mật khẩu" class="form-control hidden-xs">
+               
+                  <input type="password" id="confirm-password" v-on:keyup.enter="$event.target.nextElementSibling.focus()" v-model="regiser.confirmPassword" placeholder="Xác nhận mật khẩu" class="form-control hidden-xs">
                 </div>
                 <div class="form-group">
                 
@@ -303,27 +302,59 @@ export default {
       location.reload()
     },
     handleFacebookLogin (data) {
+      console.log(data)
       if (data.status === 'connected') {
+        localStorage.setItem('loggedByFacebook', true)
+
         let faceId = data.authResponse.userID
-        let resUser = {
-            id: faceId,
-            cookie: data.authResponse.accessToken,
-            username: 'FB_'+faceId,
-            email: '',
-            displayName: ''
-          }
-          localStorage.setItem('checkUser', JSON.stringify(resUser))
-        let logData = {
-                    event_id: 1,
-                    type: 6, 
-                    data: faceId
-                  }
-        this.$axios.post('https://ktoevents.lotteskywalk.tk/api/log', logData)
-          .then(response => console.log(response))
-          .catch(err => console.log(err))
-          this.showLoginModal = false
-          localStorage.setItem('loggedByFacebook', true)
-          this.playGame(faceId)
+
+        this.loading = true
+        let app = this
+         this.$axios.post('https://www.visitkorea.org.vn/api/get_nonce/?controller=user&method=register').then((response) => {
+          let nonce = response.data.nonce
+          this.$axios.post(`https://www.visitkorea.org.vn/api/user/register/?username=${faceId}&user_pass=facebook1234&email=${faceId}@gmail.com&nonce=${nonce}&display_name=${faceId}`)
+            .then((reg) => {
+              console.log('Dang ky thanh cong')
+              console.log(reg)
+              let regUser = {
+                id: reg.data.user_id,
+                cookie: reg.data.cookie,
+                username: faceId,
+                email: "",
+                displayName: ""
+              }
+              localStorage.setItem('checkUser', JSON.stringify(regUser))
+              app.logged = true
+              app.loading = false
+              this.showRegisterModal = false
+              this.showLoginModal = false
+              let data = {
+                event_id: 1,
+                type: 8, 
+                data: regUser
+              }
+              this.$axios.post('https://ktoevents.lotteskywalk.tk/api/log', data)
+                .then((res) => {
+                  console.log(res)
+                  console.log('Long dang ky bang tai FB thanh cong')
+                })
+                .catch((err)=> {
+                  console.log(err)
+                })
+              console.log('play game from fb login')
+              this.playGame(reg.data.user_id)
+            })
+            .catch((err) => {
+              console.log('Dang ky khong thanh cong -> dang nhap')
+              this.login.username = faceId,
+              this.login.password = 'facebook1234'
+              this.handleLogin()
+              
+              
+            })
+        }).catch((err) => {
+          console.log(err)
+        })
 
       }
     },
@@ -447,11 +478,11 @@ export default {
             email: response.data.user.email,
             displayName: response.data.user.displayname
           }
-          app.$store.dispatch('setLogged', resUser)
           localStorage.setItem('checkUser', JSON.stringify(resUser))
           app.logged = true
           app.loading = false
           this.showLoginModal = false
+          this.showRegisterModal = false
           // Store log
           let data = {
             event_id: 1,
@@ -466,6 +497,7 @@ export default {
               console.log(err)
             })
           // redirect to game
+          console.log('play game from login')
           this.playGame(response.data.user.id)
           }
         }).catch((err) => {
@@ -509,6 +541,7 @@ export default {
               localStorage.setItem('checkUser', JSON.stringify(regUser))
               app.logged = true
               app.loading = false
+              this.showLoginModal = false
               this.showRegisterModal = false
               let data = {
                 event_id: 1,
@@ -522,6 +555,7 @@ export default {
                 .catch((err)=> {
                   console.log(err)
                 })
+              console.log('playgame from Reg')
               this.playGame(reg.data.user_id)
             })
             .catch((err) => {
@@ -541,6 +575,25 @@ export default {
 </script>
 
 <style lang="scss">
+
+.register-group {
+  input {
+    display: block;
+    margin-bottom: 15px;
+    @media screen and (max-width: 767px){
+      margin-bottom: 10px;
+      width: 46%;
+      float: left;
+      margin-right: 10px;
+    }
+   
+  }
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+}
 .google-login-button {
   button {
     background-color: #dc4e41;
@@ -564,6 +617,7 @@ export default {
     max-width: 100%;
     @media screen and (max-width: 767px) {
       width: 100%;
+      padding-top: 0;
     }
   }
 }
@@ -732,6 +786,10 @@ export default {
 }
 .modal-body {
   margin-top: 20px;
+  @media screen and (max-width: 767px) {
+    margin-top: 0;
+    padding: 10px 0 0 0;
+  }
 }
 .modal-default-button {
   float: right;

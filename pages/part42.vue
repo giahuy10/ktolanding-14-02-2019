@@ -28,7 +28,12 @@
                     </div>                                                                                
                   </div>
                   
+                  
                 </div>
+                <div class="col-12">
+                      <p class="text-warning">* <i>Vui lòng nhập chính xác thông tin cá nhân. BTC không chịu trách nhiệm trong trường hợp không liên lạc được với người thắng cuộc do thông tin cung cấp không chính xác.</i></p>
+
+                  </div>
                 <div v-if="err.length > 0">
                     <div class="alert alert-warning">
                       <ul>
@@ -81,12 +86,14 @@ export default {
       .catch(err => console.log(err))
     }
   },
-  mounted () {
-    let currentUser = JSON.parse(localStorage.getItem('checkUser'))
-    if (currentUser) {
+  mounted() {
+    let loggedByFacebook = localStorage.getItem('loggedByFacebook')
+    if (!loggedByFacebook) {
+      let currentUser = JSON.parse(localStorage.getItem('checkUser'))
       this.contact.name = currentUser.displayName
       this.contact.email = currentUser.email
     }
+    
   },
   methods: {
     validEmail: function (email) {
@@ -189,7 +196,8 @@ export default {
         time_submit: this.getDateTime(),
         ref: ref ? ref : 'Directly'
       }
-      console.log(dataSubmit)
+      console.log(user)
+      this.$axios.post('https://www.visitkorea.org.vn/api/user/update_user_email/?cookie='+user.cookie+'&user_email='+this.contact.email+'&display_name='+this.contact.name+'&first_name='+this.contact.name).then(res=> console.log(res)).catch(err => console.log(err));
       this.$axios.post('https://ktoevents.lotteskywalk.tk/api/event-xem-web-moi', dataSubmit)
       .then((res) => {
         let data = {
@@ -206,13 +214,14 @@ export default {
           })
         this.loading = false
         localStorage.setItem('submited', true)
-        let checkFacebook = ref.indexOf('facebook.com')
-        let checkPost = ref.indexOf('2698009633557600')
-        if (checkFacebook < 0 || checkPost < 0) {
-          this.$router.push({path: '/part5'})
-        } else {
-          this.$router.push({path: '/finish'})
-        }
+        this.$router.push({path: '/part5'})
+        // let checkFacebook = ref.indexOf('facebook.com')
+        // let checkPost = ref.indexOf('2715611665130730')
+        // if (checkFacebook < 0 || checkPost < 0) {
+        //   this.$router.push({path: '/part5'})
+        // } else {
+        //   this.$router.push({path: '/finish'})
+        // }
         
       })
       .catch((err) => {

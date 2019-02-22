@@ -40,7 +40,7 @@ module.exports = {
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: 'https://www.visitkorea.org.vn/wp-content/themes/kto/xem-web-moi-ngay-nhan-qua-lien-tay/img/icons/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: 'https://www.visitkorea.org.vn/wp-content/themes/kto/img/icons/favicon.ico' }
     ],
     script: [
       { src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js' },
@@ -72,7 +72,8 @@ module.exports = {
   */
   plugins: [
     '~/plugins/vue2-smooth-scroll',
-    '~/plugins/google-login'
+    '~/plugins/google-login',
+    { src: '~/plugins/ga.js', ssr: false }
   ],
 
   /*
